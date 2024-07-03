@@ -1,0 +1,237 @@
+---
+import LineBg from "@/components/LineBg.astro";
+import Social from "@/components/Social.astro";
+import config from "@/config/config.json";
+import menu from "@/config/menu.json";
+import social from "@/config/social.json";
+import { markdownify } from "@/lib/utils/textConverter";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+import { FaAndroid, FaDropbox, FaHashtag, FaWindows } from 'react-icons/fa';
+import type { Call_to_action } from "types";
+
+type Footer =  {
+  title: string,
+  links: { name: string; url: string }[],
+} []
+
+
+const {data: cta }: {data: Call_to_action} = await getEntry("sections", "call-to-action");
+
+const { footer }: {footer: Footer} = menu;
+const {email, phone, copyright}: {email?: string, phone?: string, copyright: string} = config.params;
+const {showCta, showFooter} = Astro.props;
+---
+
+{
+  showFooter && (
+  <footer
+  class={`${!showCta && 'footer-alt'} relative z-20 bg-theme-dark after:absolute after:left-0 after:top-0 after:-z-10 after:h-[400px] after:w-full after:bg-[white] after:content-['']`}>
+  <div class="container relative z-30">
+    {showCta && 
+      <div class="shadow-default relative z-20 overflow-hidden rounded-lg bg-white px-8 py-10 sm:px-14">
+        <div class="row items-center text-center sm:text-left">
+          <div class="md:col-12 lg:col-7 xl:col-6">
+            <h2
+              data-aos="fade-up-sm"
+              class="mb-6 font-secondary !leading-normal sm:text-[46px]">
+              {cta.title}
+            </h2>
+            <span
+              class="inline-block align-middle text-[20px] font-bold text-dark"
+              data-aos="fade-up-sm"
+              data-aos-delay="50">
+              Supported
+            </span>
+            <ul
+                class="mt-2 flex flex-row gap-8 align-middle text-[28px] xs:ml-7 xs:mt-0 xs:inline-flex">
+                <li data-aos="fade-in" class="text-dark" data-aos-delay="300">
+                  <a href="#"><FaWindows/></a>
+                </li>
+                <li data-aos="fade-in" class="text-dark" data-aos-delay="350">
+                  <a href="#"><FaDropbox /></a>
+                </li>
+                <li data-aos="fade-in" class="text-dark" data-aos-delay="400">
+                  <a href="#">
+                    <FaHashtag />
+                  </a>
+                </li>
+                <li data-aos="fade-in" class="text-dark" data-aos-delay="450">
+                  <a href="#">
+                    <FaAndroid />
+                  </a>
+                </li>
+              </ul>
+            <div
+              class="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4 sm:justify-start sm:gap-8"
+              data-aos="fade-up-sm"
+              data-aos-delay="50">
+              {cta.buttons.primary.enable && 
+                <a href={cta.buttons.primary.link} class="btn btn-primary btn-md">
+                  {cta.buttons.primary.label}
+                </a>
+              }
+              
+              {cta.buttons.secondary.enable && 
+                <a href={cta.buttons.secondary.link} class="btn btn-outline-primary btn-md">
+                  {cta.buttons.secondary.label}
+                </a>
+              }
+            </div>
+          </div>
+          <!-- End Call To Action Content -->
+          <div class="hidden lg:col-5 xl:col-6 lg:block">
+            <div class="cta-clip-path relative" data-aos="fade-right-md">
+              <Image
+                width={470}
+                height={484}
+                src={cta.image}
+                class="mx-auto block"
+                alt="banner image" />
+            </div>
+          </div>
+          <!-- End Call To Action Image -->
+        </div>
+
+        <!-- Start CTA BG SHAPES -->
+        <div
+          data-aos="fade-left-sm"
+          class="pointer-events-none absolute left-[-65px] top-0 -z-10 select-none sm:left-0">
+          <img
+            class="inject-svg text-secondary"
+            src="/images/shapes/cta-s-1.svg"
+            alt="shape" />
+        </div>
+        <div
+          data-aos="fade-right-sm"
+          class="pointer-events-none absolute bottom-[40px] right-[-90px] -z-10 select-none xl:right-[-60px]">
+          <img
+            class="inject-svg text-secondary"
+            src="/images/shapes/cta-s-2.svg"
+            alt="shape" />
+        </div>
+        <div
+          class="pointer-events-none absolute bottom-[-120px] left-1/2 -z-10 -translate-x-1/2 select-none sm:bottom-[-90px]">
+          <img
+            class="inject-svg text-quaternary"
+            data-aos="fade-up-sm"
+            src="/images/shapes/cta-s-3.svg"
+            alt="shape" />
+        </div>
+      </div>
+    }
+  </div>
+  <!-- End Call To Action -->
+
+  <div
+    data-aos="fade-in"
+    data-aos-delay="50"
+    class={`container relative z-30 ${showCta ? 'pt-[80px] lg:pt-[130px]' : 'pt-28 md:pt-40'}`}>
+    <div class="row items-center justify-center pb-10 lg:justify-between">
+      <div class="col-auto">
+        <a href="index.html">
+          <Image width={164} height={38} src="/images/logo-light.png" alt="spydea" />
+        </a>
+      </div>
+      <!-- End Site Logo -->
+      <div class="pt-10 lg:col-6 lg:pt-0">
+        <form
+          class="mx-auto flex w-full max-w-[600px] flex-col justify-between rounded-md bg-white p-[6px] sm:flex-row lg:ml-auto lg:mr-0 lg:max-w-full">
+          <input
+            type="search"
+            class="w-full border-0 bg-transparent p-4 pl-6 text-center text-lg placeholder:text-neutral-400 focus:border-0 focus:ring-0 sm:text-left md:text-base"
+            placeholder="Enter Your Email Address" />
+          <button type="submit" class="btn btn-primary btn-md">
+            Get A Quote
+          </button>
+        </form>
+      </div>
+      <!-- End Newletter -->
+    </div>
+    <!-- End Footer First Row -->
+
+    <hr
+      class="h-[1px] border-0 border-b border-light/20 border-opacity-30 bg-transparent" />
+
+    <div class="row gy-5 py-7 text-center lg:g-4 sm:py-14 sm:text-left">
+      {
+      footer.map(widget => 
+        <div class="sm:col-6 md:col-4 mb-8 xl:mb-0 lg:col-3 xl:col-3">
+          <div class="widget lg:pl-16">
+            <h3 class="widget-title">{widget.title}</h3>
+            <ul class="widget-content">
+              {widget.links.map(link => <li><a href={link.url}>{link.name}</a></li>)}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      <!-- End Footer Widget -->
+      <div class="sm:col-6 md:col-4 mb-8 xl:mb-0 lg:col-4 xl:col-3">
+        {email &&  
+        <div class="widget lg:pl-8">
+          <h3 class="widget-title">Email US</h3>
+          <div
+            class="mx-auto -mt-1 mb-4 w-fit text-[22px] font-bold text-amber-400 transition-all duration-300 hover:underline hover:underline-offset-4 sm:mx-0">
+            <a href={`mailto:${email}`}>{email}</a>
+          </div>
+          <Social className="social-icons justify-center sm:justify-start" source={social.main} />
+        </div>
+        }
+      </div>
+      <!-- End Footer Widget -->
+      <div class="sm:col-6 md:col-6 mb-8 xl:mb-0 lg:col-3 xl:col-3">
+        <div class="widget lg:pl-16">
+          {phone && 
+          <h3 class="widget-title">Contact US</h3>
+          <div
+            class="mx-auto -mt-1 w-fit text-[22px] font-bold text-amber-400 transition-all duration-300 hover:underline hover:underline-offset-4 sm:mx-0">
+            <a href={`tel:${phone}`}>{phone}</a>
+          </div>}
+        </div>
+      </div>
+      <!-- End Footer Widget -->
+    </div>
+    <!-- End Footer First Row -->
+
+    <hr
+      class="h-[1px] border-0 border-b border-light/20 border-opacity-30 bg-transparent" />
+    <p class="copyright" set:html={markdownify(copyright)}></p>
+    <!-- End Copyright  -->
+  </div>
+  <!-- End Main Content -->
+
+  
+    <LineBg
+    className="absolute left-0 top-1/2 flex h-full w-full -translate-y-1/2 justify-between"
+    color="bg-line-dark"
+  />
+
+  <div class="absolute bottom-0 left-0 -z-10 h-full w-full">
+    <div
+      class="pointer-events-none absolute right-0 top-[35%] hidden select-none lg:block">
+      <img
+        class="inject-svg text-quaternary"
+        src="/images/shapes/footer-s-1.svg"
+        alt="shape" />
+    </div>
+    <div
+      class="pointer-events-none absolute bottom-0 hidden select-none lg:block min-[1024px]:left-[-6%] min-[1400px]:left-0">
+      <img
+        class="inject-svg text-quinary"
+        src="/images/shapes/footer-s-2.svg"
+        alt="shape" />
+    </div>
+    <div
+      class="pointer-events-none absolute bottom-0 right-0 hidden select-none lg:block">
+      <img
+        class="inject-svg text-secondary"
+        src="/images/shapes/footer-s-3.svg"
+        alt="shape" />
+    </div>
+  </div>
+  <!-- End background Lines -->
+</footer>
+  )
+}
+<!-- End Main Footer -->

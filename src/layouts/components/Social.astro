@@ -1,0 +1,23 @@
+---
+const { source, className } = Astro.props as { source: { icon: string; link: string; name: string }[]; className: string };
+import DynamicIcon from "@/helpers/DynamicIcon";
+
+
+---
+<ul class={className}>
+  {source?.map(({ icon, link }, i) => {
+    return (
+      <li>
+        <a
+          class="inline-block"
+          aria-label={icon}
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >
+          <DynamicIcon className="inline-block" icon={icon} />
+        </a>
+      </li>
+    );
+  })}
+</ul>

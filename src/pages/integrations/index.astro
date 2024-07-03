@@ -1,0 +1,78 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import PageHeader from "@/partials/PageHeader.astro";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+const integrationIndex = await getEntry("integrations", "-index");
+const technologies = await getSinglePage("integrations");
+const removeDrafts = technologies.filter(
+  (technology) => !technology.data.draft,
+);
+---
+
+<Base
+  title={integrationIndex.data.title}
+  meta_title={integrationIndex.data.meta_title}
+>
+  <main>
+    <PageHeader title={integrationIndex.data.title} />
+    <section
+      class="section-md relative mt-[-28rem] overflow-hidden md:mt-[-32rem]"
+    >
+      <div class="container relative z-20">
+        <div class="row gy-4">
+          {
+            removeDrafts.map((technology) => (
+              <div data-aos="fade-up-sm" class="md:col-6 lg:col-4">
+                <div class="shadow-default overflow-hidden rounded-xl bg-white p-10">
+                  <div class="mb-6 flex flex-wrap items-center justify-between gap-y-4">
+                    <Image
+                      width={72}
+                      height={72}
+                      src={technology.data.icon || ""}
+                      alt="icon"
+                      class="rounded-xl"
+                    />
+                    <a
+                      href={`/integrations/${technology.slug}`}
+                      class="btn btn-outline-primary"
+                    >
+                      <i class="fa-solid fa-plus mr-1 text-sm" />
+                      Install
+                    </a>
+                  </div>
+                  <h3 class="mb-4 font-primary text-xl font-semibold text-dark sm:text-2xl">
+                    <a href={`/integrations/${technology.slug}`}>
+                      {technology.data.title}
+                    </a>
+                  </h3>
+                  <p set:html={markdownify(technology.data.description!)} />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div
+          class="pointer-events-none absolute left-[-4%] top-[30%] -z-10 select-none"
+        >
+          <img
+            class="inject-svg text-tertiary"
+            src="/images/shapes/integration-s-1.svg"
+            alt="shape"
+          />
+        </div>
+        <div
+          class="pointer-events-none absolute bottom-[30%] right-[-5%] -z-10 select-none"
+        >
+          <img
+            class="inject-svg text-quaternary"
+            src="/images/shapes/integration-s-2.svg"
+            alt="shape"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

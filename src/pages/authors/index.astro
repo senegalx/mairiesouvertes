@@ -1,0 +1,29 @@
+---
+import AuthorCard from "@/components/AuthorCard.astro";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import type { CollectionKey } from "astro:content";
+import { getEntry } from "astro:content";
+
+const authorIndex = await getEntry("authors" as CollectionKey, "-index");
+const authors = await getSinglePage("authors");
+---
+
+<Base title={authorIndex.data.title}>
+  <PageHeader title={authorIndex.data.title} />
+
+  <section class="section-md mt-[-28rem] md:mt-[-32rem]">
+    <div class="container relative z-40">
+      <div class="row gy-5">
+        {
+          authors.map((author) => (
+            <div data-aos="fade-up-sm" class="md:col-6 lg:col-4 xl:col-3">
+              <AuthorCard data={author} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,176 @@
+---
+import config from "@/config/config.json";
+import menu from "@/config/menu.json";
+import PromoBar from "../PromoBar";
+import LineBg from "../components/LineBg.astro";
+import { Image } from "astro:assets";
+
+export interface ChildNavigationLink {
+  name: string;
+  url: string;
+}
+
+export interface NavigationLink {
+  name: string;
+  url: string;
+  hasChildren?: boolean;
+  children?: ChildNavigationLink[];
+}
+
+const { main }: { main: NavigationLink[] } = menu;
+const { navigation_buttons } = config;
+const { bgColor = "bg-quaternary/20" }: { bgColor?: string } = Astro.props;
+---
+
+<LineBg
+  className="line-bg fixed left-0 top-1/2 z-10 flex h-screen w-full -translate-y-1/2 justify-between"
+/>
+<!-- End background lines -->
+<PromoBar client:only="react" />
+<!-- End Top Header  -->
+
+<header class={`header z-50 ${bgColor}`}>
+  <nav class="navbar container relative z-30">
+    <a href="/" class="navbar-brand">
+      <Image width={158} height={36} src="/images/logo-dark.png" alt="spydea" />
+    </a>
+    {/* <!-- End logo --> */}
+
+    {/* <!-- End Language Switcher --> */}
+
+    <button
+      class={`navbar-toggler group relative ml-auto lg:ml-4`}
+      aria-label="navbar toggler"
+    >
+      <div
+        class="relative flex h-[30px] w-[30px] transform items-center justify-center overflow-hidden rounded-full ring-0 transition-all duration-200"
+      >
+        <div
+          class="flex h-[15px] w-[18px] origin-center transform flex-col justify-between overflow-hidden transition-all duration-300 group-[.active]:h-[21px]"
+        >
+          <div
+            class="h-[2px] w-7 origin-left transform bg-dark transition-all duration-300 group-[.active]:translate-x-10"
+          >
+          </div>
+          <div
+            class="h-[2px] w-7 transform rounded bg-dark transition-all delay-75 duration-300 group-[.active]:translate-x-10"
+          >
+          </div>
+          <div
+            class="h-[2px] w-7 origin-left transform bg-dark transition-all delay-150 duration-300 group-[.active]:translate-x-10"
+          >
+          </div>
+          <div
+            class="absolute top-2.5 flex w-0 -translate-x-10 transform items-center justify-between transition-all duration-500 group-[.active]:w-12 group-[.active]:translate-x-0"
+          >
+            <div
+              class="absolute h-[2px] w-5 rotate-0 transform bg-dark transition-all delay-300 duration-500 group-[.active]:rotate-45"
+            >
+            </div>
+            <div
+              class="absolute h-[2px] w-5 -rotate-0 transform bg-dark transition-all delay-300 duration-500 group-[.active]:-rotate-45"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </button>
+    {/* <!-- End Navbar Toggler --> */}
+
+    <div class={`navbar-wrapper`}>
+      <ul class="navbar-nav">
+        {
+          main.map((item, i) => {
+            return item.hasChildren ? (
+              <li class="nav-item nav-dropdown group">
+                <label for={item.name}>
+                  <span class="nav-link inline-flex items-center">
+                    {item.name}
+                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </span>
+                </label>
+                <input class="peer hidden" type="checkbox" id={item.name} />
+                <ul class="nav-dropdown-list lg:group-hover:visible lg:group-hover:opacity-100 peer-checked:max-lg:block">
+                  {item.children?.map((child) => {
+                    return (
+                      <li class="nav-dropdown-item">
+                        <a href={child.url} class="nav-dropdown-link">
+                          {child.name}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            ) : (
+              <li class="nav-item">
+                <a href={item.url} class="nav-link">
+                  {item.name}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      {/* <!-- End Navbar Nav --> */}
+      <div
+        class="order-2 mx-auto mb-[0.75rem] flex flex-col items-center lg:mx-0 lg:mb-0 lg:ml-7 lg:flex-row"
+      >
+        <div
+          class="flex flex-col justify-center gap-5 pt-4 text-center lg:ml-7 lg:flex-row lg:gap-7 lg:pt-0 lg:text-left"
+        >
+          {
+            navigation_buttons.map((button, i) => {
+              return (
+                button?.enable && (
+                  <a
+                    href={button.link}
+                    class={`btn ${
+                      i === 0 ? "btn-outline-primary" : "btn-primary"
+                    } w-[200px] min-[340px]:w-[300px] lg:w-auto`}
+                  >
+                    {button.label}
+                  </a>
+                )
+              );
+            })
+          }
+        </div>
+      </div>
+    </div>
+    {/* <!-- End Navbar Wrapper --> */}
+  </nav>
+  {/* <!-- End Main Header  --> */}
+
+  {
+    bgColor !== "bg-transparent" && (
+      <LineBg className="line-bg absolute z-20" color="bg-line-yellow" />
+    )
+  }
+</header>
+
+<script>
+  // Sticky Header
+  const header = document.querySelector(".header") as HTMLElement;
+
+  function stickyHeader() {
+    if (window.pageYOffset > 0) {
+      header.classList.add("header-fixed-top");
+    } else {
+      header.classList.remove("header-fixed-top");
+    }
+  }
+  stickyHeader();
+  window.addEventListener("scroll", () => {
+    stickyHeader();
+  });
+
+  const navbarToggler = document.querySelector(".navbar-toggler");
+  const navbarMenu = document.querySelector(".navbar-wrapper");
+  navbarToggler?.addEventListener("click", () => {
+    navbarToggler.classList.toggle("active");
+    navbarMenu?.classList.toggle("active");
+  });
+</script>

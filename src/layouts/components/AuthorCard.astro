@@ -1,0 +1,36 @@
+---
+import { plainify } from "@/lib/utils/textConverter";
+import { Image } from "astro:assets";
+import Social from "./Social.astro";
+
+const { data } = Astro.props;
+const { title, image, social } = data.data;
+---
+
+<div
+  class="overflow-hidden rounded-xl bg-white px-3 py-8 shadow-sm transition-all duration-300 hover:shadow-md"
+>
+  <a href={`/authors/${data.slug}`} class="h-full max-h-[900px] w-full">
+    {
+      image && (
+        <Image
+          class="mx-auto h-[180px] w-[180px] rounded-full object-cover"
+          src={image}
+          width={180}
+          height={180}
+          alt="Daniel Mitchell"
+        />
+      )
+    }
+  </a>
+  <div class="px-5 pt-8 text-center">
+    <h3 class="mb-4 text-xl font-semibold text-dark sm:text-2xl">
+      <a href={`/authors/${data.slug}`}>{title}</a>
+    </h3>
+    {plainify(data.body?.slice(0, 100))}
+    <Social
+      source={social}
+      className="social-icons-author mt-5 flex flex-wrap items-center justify-center gap-4 font-secondary text-dark"
+    />
+  </div>
+</div>

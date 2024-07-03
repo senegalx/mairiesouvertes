@@ -1,0 +1,21 @@
+---
+const { color = "", className }: { color?: string; className?: string } =
+  Astro.props;
+---
+
+<div class={`line-bg ${className}`}>
+  <div class="container flex justify-between">
+    <span class={`${color} inline-block h-full opacity-50 md:opacity-100`}
+    ></span>
+    <span class={`${color} inline-block h-full opacity-50 md:opacity-100`}
+    ></span>
+    <span class={`${color} inline-block h-full opacity-50 md:opacity-100`}
+    ></span>
+    <span class={`${color} inline-block h-full opacity-50 md:opacity-100`}
+    ></span>
+    <span class={`${color} inline-block h-full opacity-50 md:opacity-100`}
+    ></span>
+    <span class={`${color} inline-block h-full opacity-50 md:opacity-100`}
+    ></span>
+  </div>
+</div>

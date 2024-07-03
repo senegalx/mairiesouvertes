@@ -1,0 +1,51 @@
+{
+  "site": {
+    "title": "Spydea Astro",
+    "base_url": "https://spydea-astro.vercel.app",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo-dark.png",
+    "logo_light": "/images/logo-light.png",
+    "logo_width": "158",
+    "logo_height": "37",
+    "logo_text": "Spydea"
+  },
+
+  "settings": {
+    "pagination": 3,
+    "blog_folder": "posts"
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "copyright": "Designed And Developed by [themefisher](https://themefisher.com)",
+    "email": "hello@themefisher.com",
+    "phone": "+94746-388817"
+  },
+
+  "navigation_buttons": [
+    {
+      "enable": true,
+      "label": "Login",
+      "link": "/login"
+    },
+    {
+      "enable": true,
+      "label": "Get Started",
+      "link": "/contact"
+    }
+  ],
+
+  "disqus": {
+    "enable": true,
+    "shortname": "themefisher-template",
+    "settings": {}
+  },
+
+  "metadata": {
+    "meta_author": "themefisher.com",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "Spydea astro template"
+  }
+}

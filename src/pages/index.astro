@@ -1,0 +1,732 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import LineBg from "@/components/LineBg.astro";
+import DynamicIcon from "@/helpers/DynamicIcon";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import Testimonial from "@/partials/Testimonial.astro";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+import { FaCheck } from "react-icons/fa";
+import type { Button, Feature, Funfacts } from "types";
+
+interface Homepage {
+  banner: {
+    title: string;
+    content: string;
+    image: string;
+    newsletter?: boolean;
+    supported?: {
+      title: string;
+      list: { link: string; icon: string }[];
+      facility: string[];
+    };
+  };
+  brands: Array<string>;
+  features: Feature;
+  showcase: {
+    subtitle: string;
+    title: string;
+    description: string;
+    image: string;
+    list: {
+      title: string;
+      description?: string;
+      image: string;
+    }[];
+  };
+  funfacts: Funfacts;
+  services: {
+    subtitle: string;
+    title: string;
+    description: string;
+    image: string;
+  }[];
+  article: {
+    subtitle: string;
+    title: string;
+    description: string;
+    button: Button;
+  };
+}
+
+const homepage = await getEntry("homepage", "index");
+const latestPostsLenght = 3;
+const posts = await getSinglePage("posts");
+const sortedPost = sortByDate(posts).slice(0, latestPostsLenght);
+const {
+  banner,
+  features,
+  showcase,
+  funfacts,
+  services,
+  article,
+  brands,
+}: Homepage = homepage.data;
+---
+
+<Base>
+  <main>
+    <!-- Banner -->
+    <section
+      class="section banner relative overflow-hidden before:z-10 after:z-10"
+    >
+      <div class="container relative z-30">
+        <div class="row items-center">
+          <div class="lg:col-6">
+            <h1
+              data-aos="fade-up-sm"
+              class="mb-6 text-[35px] sm:text-[50px] xl:text-[65px]"
+              set:html={banner.title}
+            />
+            <p
+              data-aos="fade-up-sm"
+              data-aos-delay="150"
+              class="mb-6 text-lg"
+              set:html={banner.content}
+            />
+
+            <!-- Banner newletter -->
+            {
+              banner.newsletter && (
+                <form
+                  data-aos="fade-up-sm"
+                  data-aos-delay="200"
+                  class="my-10 flex w-full max-w-[600px] flex-col justify-between rounded-md bg-white p-[6px] shadow-md sm:flex-row"
+                >
+                  <input
+                    type="search"
+                    class="w-full border-0 bg-transparent p-4 pl-6 text-center text-base placeholder:text-neutral-400 focus:border-0 focus:ring-0 sm:text-left"
+                    placeholder="Enter Your Email Address"
+                  />
+                  <button type="submit" class="btn btn-primary btn-md">
+                    Get A Quote
+                  </button>
+                </form>
+              )
+            }
+
+            <span
+              data-aos="fade-right"
+              data-aos-delay="250"
+              class="align-middle text-lg font-bold text-dark"
+            >
+              {banner.supported!.title}
+            </span>
+            <ul
+              class="mt-2 flex flex-row gap-8 align-middle text-[28px] xs:ml-7 xs:mt-0 xs:inline-flex"
+            >
+              {
+                banner.supported!.list.map((item, index) => (
+                  <li
+                    data-aos="fade-in"
+                    class="text-dark"
+                    data-aos-delay={100 + 50 * index}
+                  >
+                    <a href="">
+                      {" "}
+                      <DynamicIcon icon={item.icon} />
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+            <div class="py-8">
+              <hr
+                class="h-[1px] border-0 border-b border-border/50 bg-transparent"
+              />
+            </div>
+            <ul class="flex flex-wrap gap-x-6 gap-y-2">
+              {
+                banner.supported!.facility.map((item, index) => (
+                  <li data-aos="fade-in" data-aos-delay={100 + 50 * index}>
+                    <FaCheck className="text-emerald-400 inline-block mr-2 text-xl" />
+                    <p class="inline-block align-middle text-lg font-medium text-dark">
+                      {item}
+                    </p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="mx-auto max-w-[600px] pt-24 lg:col-6 lg:pt-0">
+            <div
+              data-aos="fade-up-sm"
+              class="image-block relative mr-[5.5%] md:mr-6 lg:ml-6"
+            >
+              <Image
+                class="banner-image w-100 h-auto"
+                src="/images/banner/banner-image.jpg"
+                width={448}
+                height={564}
+                alt="banner-image"
+              />
+              <Image
+                data-aos="fade-down-sm"
+                data-aos-delay="150"
+                width={211}
+                height={121}
+                class="absolute bottom-16 left-0 w-[40%] rounded-lg shadow-md"
+                src="/images/banner/banner-image-part-1.jpg"
+                alt="banner-image"
+              />
+              <Image
+                data-aos="fade-up-sm"
+                data-aos-delay="200"
+                class="absolute right-0 top-0 w-[30%] rounded-lg md:-right-32 md:top-14 md:w-[40%] xl:top-36"
+                src="/images/banner/banner-image-part-2.jpg"
+                width={211}
+                height={254}
+                alt="banner-image"
+              />
+
+              <!-- Start Start Bg Shape -->
+              <div
+                data-aos="fade-up-sm"
+                class="pointer-events-none absolute left-[40px] top-[-50px] -z-20 w-[40%] select-none"
+              >
+                <img
+                  class="text-secondary inject-svg"
+                  src="/images/shapes/banner-s-1.svg"
+                  alt="shape"
+                />
+              </div>
+              <div
+                data-aos="fade-down-sm"
+                class="pointer-events-none absolute bottom-[-70px] right-[-130px] -z-20 w-[40%] select-none"
+              >
+                <img
+                  class="text-quinary inject-svg"
+                  src="/images/shapes/banner-s-2.svg"
+                  alt="shape"
+                />
+              </div>
+              <!-- End Start Bg Shape -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Main Content -->
+
+      <LineBg className="absolute z-20" color="bg-line-yellow" />
+    </section>
+    <!-- /Banner -->
+
+    <!-- Brand section -->
+    <section class="md:section">
+      <div
+        class="shadow-default relative z-20 mx-3 max-w-[1440px] rounded-xl bg-white py-8 md:mx-6 md:py-16 lg:mx-auto"
+      >
+        <div class="container">
+          <div class="row justify-center">
+            {
+              brands.map((brand) => (
+                <div
+                  class="col-5 sm:col-3 lg:col-2"
+                  data-aos="fade-up-sm"
+                  data-aos-delay="100"
+                >
+                  <Image
+                    width={169}
+                    height={60}
+                    src={brand}
+                    alt="brand logo"
+                    class="inline-block py-4 sm:mx-auto"
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Brands Section -->
+
+    <!-- Features -->
+    <section class="section features relative z-20 overflow-hidden after:-z-10">
+      <div class="container relative z-30">
+        <div class="row items-end justify-between pb-12">
+          <div class="lg:col-8 xl:col-6">
+            <span
+              class="mb-6 inline-block font-medium uppercase text-red-400"
+              data-aos="fade-up-sm"
+            >
+              {features.subtitle}
+            </span>
+            <div
+              class="mb-8 border-l-2 border-dark border-opacity-50 py-2 pl-6 lg:mb-0"
+              data-aos="fade-up-sm"
+            >
+              <h2
+                class="mb-6 font-semibold"
+                data-aos="fade-up-sm"
+                data-aos-delay="50"
+              >
+                {features.title}
+              </h2>
+              <p class="text-lg" data-aos="fade-up-sm" data-aos-delay="100">
+                {features.description}
+              </p>
+            </div>
+          </div>
+          <div class="col-auto" data-aos="fade-right-sm" data-aos-delay="150">
+            {
+              features.button.enable && (
+                <a
+                  href={features.button.link}
+                  class="btn btn-outline-primary btn-sm"
+                >
+                  {features.button.label}
+                </a>
+              )
+            }
+          </div>
+        </div>
+        <div class="colored-box-icon row gy-4">
+          {
+            features.list.map((feature, index) => {
+              return (
+                <div
+                  data-aos="fade-up-sm"
+                  data-aos-delay={200 + 50 * index}
+                  class="md:col-6 lg:col-4 xl:col-3"
+                >
+                  <div class="h-full rounded-2xl border border-border/30 bg-white px-8 py-12 transition-all duration-300 hover:shadow-sm">
+                    <div class="icon-box">
+                      <DynamicIcon icon={feature.icon} />
+                    </div>
+                    <h3 class="mb-6 text-xl font-semibold sm:text-2xl">
+                      {feature.title}
+                    </h3>
+                    <p>{feature.description}</p>
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+
+      <!-- Start Bg Shape -->
+      <div
+        data-aos="fade-left-sm"
+        class="pointer-events-none absolute top-0 hidden select-none min-[1440px]:block"
+      >
+        <img
+          class="inject-svg text-quaternary"
+          src="/images/shapes/features-s-1.svg"
+          alt="shape"
+        />
+      </div>
+      <div
+        data-aos="fade-right-sm"
+        class="pointer-events-none absolute right-0 top-52 hidden select-none lg:block"
+      >
+        <img
+          class="inject-svg text-secondary"
+          src="/images/shapes/features-s-2.svg"
+          alt="shape"
+        />
+      </div>
+      <!-- End Bg Shape -->
+
+      <LineBg className="line-bg absolute z-20" color="bg-line-sky" />
+    </section>
+    <!-- /Features -->
+
+    <!-- Showcase -->
+    <section class="section relative z-20 overflow-hidden">
+      <div class="container">
+        <div class="row pb-12 text-center">
+          <div class="mx-auto lg:col-7">
+            <span
+              class="mb-6 inline-block font-medium uppercase text-red-400"
+              data-aos="fade-up-sm"
+              data-aos-delay="50"
+            >
+              {showcase.subtitle}
+            </span>
+            <h2
+              class="mb-6 font-semibold"
+              data-aos="fade-up-sm"
+              data-aos-delay="100"
+            >
+              {showcase.title}
+            </h2>
+            <p class="text-lg" data-aos="fade-up-sm" data-aos-delay="150">
+              {showcase.description}
+            </p>
+          </div>
+        </div>
+        <!-- End Section Title  -->
+        <div class="row gy-4" data-tab-group="">
+          <div class="flex flex-wrap gap-4 xl:col-4 lg:gap-6" data-tab-nav>
+            {
+              showcase.list.map((item, index: number) => (
+                <button
+                  class={`group ${index === 0 && "active"}`}
+                  data-tab={index}
+                  data-aos="fade-up-sm"
+                >
+                  <div class="h-full rounded-xl border border-border/50 bg-white px-4 py-4 text-left group-[.active]:border-white group-[.active]:shadow-md xl:px-8 xl:py-10">
+                    <h3 class="text-sm font-semibold xl:mb-6 xl:text-2xl">
+                      {item.title}
+                    </h3>
+                    <p class="hidden xl:block">{item.description}</p>
+                  </div>
+                </button>
+              ))
+            }
+          </div>
+          <!-- End Showcase Tab Button  -->
+          <div class="relative xl:col-8" data-aos="fade-in" data-tab-content>
+            {
+              showcase.list.map((item, index: number) => (
+                <div
+                  class={`shadow-default group relative ${
+                    index === 0 && "active"
+                  }`}
+                  data-tab-panel={index}
+                >
+                  <div class="invisible h-0 opacity-70 transition-opacity duration-300 group-[.active]:visible group-[.active]:h-full group-[.active]:opacity-100">
+                    <Image
+                      class="h-full w-full rounded-xl"
+                      src={item.image}
+                      alt="feature image"
+                      width={850}
+                      height={617}
+                    />
+                  </div>
+                </div>
+              ))
+            }
+
+            <!-- Start Bg Shape -->
+            <div
+              data-aos="fade-up-md"
+              class="pointer-events-none absolute right-[-40px] top-[-50px] -z-10 hidden select-none lg:block"
+            >
+              <img
+                class="inject-svg text-quinary"
+                src="/images/shapes/showcase-s-1.svg"
+                alt="shape"
+              />
+            </div>
+            <div
+              data-aos="fade-down-md"
+              class="pointer-events-none absolute bottom-[-50px] right-[-40px] -z-10 hidden select-none lg:block"
+            >
+              <img
+                class="inject-svg text-quaternary"
+                src="/images/shapes/showcase-s-2.svg"
+                alt="shape"
+              />
+            </div>
+            <!-- End Bg Shape -->
+          </div>
+          <!-- End Tab Content  -->
+        </div>
+        <!-- End Showcase Tab  -->
+      </div>
+    </section>
+    <!-- End Showcase Section -->
+
+    <!-- Funfacts -->
+    <section class="section relative z-20 overflow-hidden">
+      <div class="container">
+        <div data-aos="fade-up-sm" class="row pb-12 text-center">
+          <div class="mx-auto lg:col-8">
+            <span
+              class="mb-6 inline-block font-medium uppercase text-red-400"
+              data-aos="fade-up-sm"
+              data-aos-delay="50"
+            >
+              {funfacts.subtitle}
+            </span>
+            <h2
+              class="mb-6 font-semibold"
+              data-aos="fade-up-sm"
+              data-aos-delay="100"
+            >
+              {funfacts.title}
+            </h2>
+            <p class="text-lg" data-aos="fade-up-sm" data-aos-delay="150">
+              {funfacts.description}
+            </p>
+          </div>
+        </div>
+        <div class="row relative">
+          <div class="col-12">
+            <ul
+              class="funfacts-list list-dotted-line-separator shadow-default flex flex-col justify-center gap-6 rounded-2xl bg-white px-12 py-10 sm:py-14 md:flex-row md:gap-0"
+            >
+              {
+                funfacts.list.map((counter, index: number) => (
+                  <li
+                    class="text-center"
+                    data-aos="fade-up-sm"
+                    data-aos-delay="200"
+                  >
+                    <span class="mb-6 block font-secondary text-3xl font-bold text-dark md:text-4xl xl:text-6xl counter-count">
+                      {counter.count}
+                    </span>
+                    <div class="text-dark md:text-h6 xl:text-h4">
+                      {counter.text}
+                    </div>
+                  </li>
+                ))
+              }
+            </ul>
+
+            <!-- Start Bg Shape -->
+            <div
+              data-aos="fade-up-md"
+              data-aos-delay="50"
+              class="pointer-events-none absolute bottom-[-55px] left-[-30px] -z-10 hidden select-none lg:block"
+            >
+              <img
+                class="inject-svg text-quinary"
+                src="/images/shapes/fun-fact-s-1.svg"
+                alt="shape"
+              />
+            </div>
+            <div
+              data-aos="fade-down-md"
+              data-aos-delay="50"
+              class="pointer-events-none absolute right-[-40px] top-[40px] -z-10 hidden select-none lg:block"
+            >
+              <img
+                class="inject-svg text-secondary"
+                src="/images/shapes/fun-fact-s-2.svg"
+                alt="shape"
+              />
+            </div>
+            <!-- End Bg Shape -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Fun Fact Section -->
+
+    <!-- services -->
+    <section
+      class="section-lg feature triangle-up relative z-20 overflow-hidden pb-0"
+    >
+      <div class="container relative z-20">
+        <div class="row gy-4 items-center">
+          <div data-aos="fade-left-sm" class="lg:col-7">
+            <div class="feature-clip-path-1 relative">
+              <Image
+                width={727}
+                height={613}
+                src={services[0].image}
+                class="mx-auto block"
+                alt="feature image"
+              />
+              <!-- Start Bg Shape -->
+              <div
+                data-aos="fade-right-sm"
+                class="pointer-events-none absolute right-[100px] top-[-10px] -z-10 hidden select-none lg:block"
+              >
+                <img
+                  class="inject-svg text-quinary"
+                  src="/images/shapes/feature-s-1.svg"
+                  alt="shape"
+                />
+              </div>
+              <div
+                data-aos="fade-left-sm"
+                class="pointer-events-none absolute bottom-[130px] left-0 -z-10 hidden select-none lg:block"
+              >
+                <img
+                  class="inject-svg text-secondary"
+                  src="/images/shapes/feature-s-2.svg"
+                  alt="shape"
+                />
+              </div>
+              <!-- End Bg Shape -->
+            </div>
+          </div>
+          <div class="lg:col-5">
+            <span
+              class="mb-6 inline-block font-medium uppercase text-red-400"
+              data-aos="fade-right-sm"
+            >
+              {services[0].subtitle}
+            </span>
+            <div
+              data-aos="fade-right-sm"
+              class="mb-6 border-l-2 border-dark border-opacity-50 py-2 pl-6"
+            >
+              <h2
+                class="font-semibold"
+                data-aos="fade-right-sm"
+                data-aos-delay="100"
+              >
+                {services[0].title}
+              </h2>
+            </div>
+            <p
+              class="pl-6 text-lg"
+              data-aos="fade-right-sm"
+              data-aos-delay="150"
+            >
+              {services[0].description}
+            </p>
+          </div>
+        </div>
+      </div>
+      <LineBg
+        className="absolute left-0 top-1/2 z-10 flex h-full w-full -translate-y-1/2 justify-between"
+        color="bg-line-sky"
+      />
+    </section>
+
+    <section
+      class="section-lg feature triangle-down relative z-20 overflow-hidden pt-32"
+    >
+      <div class="container relative z-20">
+        <div class="row gy-4 items-center">
+          <div class="order-1 lg:col-5 lg:order-0">
+            <span
+              class="mb-6 inline-block font-medium uppercase text-red-400"
+              data-aos="fade-left-sm"
+            >
+              {services[1].subtitle}
+            </span>
+            <div
+              data-aos="fade-left-sm"
+              class="mb-6 border-l-2 border-dark border-opacity-50 py-2 pl-6"
+            >
+              <h2
+                class="font-semibold"
+                data-aos="fade-left-sm"
+                data-aos-delay="100"
+              >
+                {services[1].title}
+              </h2>
+            </div>
+            <p
+              class="pl-6 text-lg"
+              data-aos="fade-left-sm"
+              data-aos-delay="150"
+            >
+              {services[1].description}
+            </p>
+          </div>
+          <div class="order-0 lg:col-7 lg:order-0">
+            <div class="feature-clip-path-2 relative" data-aos="fade-right-sm">
+              <Image
+                src="/images/feature-2.png"
+                class="mx-auto block"
+                width={724}
+                height={564}
+                alt="feature image"
+              />
+              <!-- Start Bg Shape -->
+              <div
+                data-aos="fade-up-md"
+                class="pointer-events-none absolute left-[12%] top-[-8%] -z-10 hidden select-none lg:block"
+              >
+                <img
+                  class="inject-svg text-quinary"
+                  src="/images/shapes/feature-s-3.svg"
+                  alt="shape"
+                />
+              </div>
+              <div
+                data-aos="fade-down-md"
+                class="pointer-events-none absolute bottom-[-1%] right-[10%] -z-10 hidden select-none lg:block"
+              >
+                <img
+                  class="inject-svg text-quaternary"
+                  src="/images/shapes/feature-s-4.svg"
+                  alt="shape"
+                />
+              </div>
+              <!-- End Bg Shape -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <LineBg
+        className="absolute left-0 top-1/2 z-10 flex h-full w-full -translate-y-1/2 justify-between"
+        color="bg-line-sky"
+      />
+    </section>
+    <!-- end services -->
+
+    <!-- Testimonial -->
+    <Testimonial />
+    <!-- End Testimonial -->
+
+    <!-- Lates aritcles -->
+    <section
+      class="section-md articles relative z-20 overflow-hidden after:-z-10"
+    >
+      <div class="container relative z-30">
+        <div class="row items-end justify-between pb-12">
+          <div class="lg:col-8 xl:col-6">
+            <span
+              class="mb-6 inline-block font-medium uppercase text-red-400"
+              data-aos="fade-up-sm"
+            >
+              {article.subtitle}
+            </span>
+            <div
+              data-aos="fade-up-sm"
+              class="mb-8 border-l-2 border-dark border-opacity-50 py-2 pl-6 lg:mb-0"
+            >
+              <h2 class="font-semibold" data-aos="fade-up-sm">
+                {article.title}
+              </h2>
+            </div>
+          </div>
+          <div data-aos="fade-right-sm" class="col-auto">
+            {
+              article.button.enable && (
+                <a
+                  href={article.button.link}
+                  class="btn btn-outline-primary btn-sm"
+                >
+                  {article.button.label}
+                </a>
+              )
+            }
+          </div>
+        </div>
+        <div class="row gy-4">
+          {sortedPost.map((post) => <BlogCard data={post} />)}
+        </div>
+      </div>
+      <LineBg className="line-bg absolute z-20" color="bg-line-sky" />
+    </section>
+
+    <!-- Start Bg Shape -->
+    <div
+      data-aos="fade-left-sm"
+      class="pointer-events-none absolute -left-24 bottom-0 hidden select-none lg:block"
+    >
+      <img
+        class="inject-svg text-secondary"
+        src="/images/shapes/about-s-1.svg"
+        alt="shape"
+      />
+    </div>
+    <div
+      data-aos="fade-right-sm"
+      class="pointer-events-none absolute right-0 top-52 hidden select-none lg:block"
+    >
+      <img
+        class="inject-svg text-quinary"
+        src="/images/shapes/blog-s-1.svg"
+        alt="shape"
+      />
+    </div>
+    <!-- End Bg Shape -->
+
+    <!-- End background lines -->
+  </main>
+  <!-- End Latest Articles -->
+</Base>
