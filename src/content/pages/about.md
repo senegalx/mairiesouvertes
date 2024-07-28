@@ -1,6 +1,6 @@
 ---
-title: About Spydea
-meta_title: "About us"
+title: Mairies Ouvertes
+meta_title: "À-propos"
 description: "Vivamus accu msan tincidunt. Vestib ulum ac diam sit amet quam vehicula elementum sed suscipit tortor eget felis porttitor volut"
 image: "/images/avatar.png"
 draft: false

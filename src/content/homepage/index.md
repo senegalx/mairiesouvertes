@@ -17,9 +17,14 @@ banner:
       - icon: "FaAndroid"
         link: "#?"
     facility:
-      - Works Anywhere
-      - Get Rewarded
-      - No Hidden Fees
+      - Boké
+      - Conakry
+      - Farana
+      - Kankan
+      - Kindia
+      - Labé
+      - Mamou
+      - Nzérékoré
 
 #Brands
 brands:
