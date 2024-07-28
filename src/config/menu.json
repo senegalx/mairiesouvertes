@@ -1,22 +1,69 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "Accueil",
       "url": "/"
     },
     {
-      "name": "About",
+      "name": "À-propos",
       "url": "/about"
     },
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "Publications",
+      "url": "/career",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Boké",
+          "url": "/career"
+        },
+        {
+          "name": "Conakry",
+          "url": "/career"
+        },
+        {
+          "name": "Farana",
+          "url": "/career"
+        },
+        {
+          "name": "Kankan",
+          "url": "/career"
+        },
+        {
+          "name": "Kindia",
+          "url": "/career"
+        },
+        {
+          "name": "Labé",
+          "url": "/career"
+        },
+        {
+          "name": "Mamou",
+          "url": "/career"
+        },
+        {
+          "name": "Nzérékoré",
+          "url": "/career"
+        }
+      ]
+    },
+    {
+      "name": "Actualités",
+      "url": "/posts"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
     },
     {
       "name": "Pages",
       "url": "",
       "hasChildren": true,
       "children": [
+        {
+          "name": "Elements",
+          "url": "/elements"
+        },
         {
           "name": "Integration",
           "url": "/integrations"

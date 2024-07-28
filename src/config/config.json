@@ -1,15 +1,15 @@
 {
   "site": {
-    "title": "Spydea Astro",
-    "base_url": "https://spydea-astro.vercel.app",
+    "title": "Mairies Ouvertes",
+    "base_url": "https://mairiesouvertes.org",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
     "logo": "/images/logo-dark.png",
     "logo_light": "/images/logo-light.png",
-    "logo_width": "158",
-    "logo_height": "37",
-    "logo_text": "Spydea"
+    "logo_width": "154",
+    "logo_height": "40",
+    "logo_text": "Mairies Ouvertes"
   },
 
   "settings": {
@@ -44,7 +44,7 @@
   },
 
   "metadata": {
-    "meta_author": "themefisher.com",
+    "meta_author": "Mamadou Diagne",
     "meta_image": "/images/og-image.png",
     "meta_description": "Spydea astro template"
   }
