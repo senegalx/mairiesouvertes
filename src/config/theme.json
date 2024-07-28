@@ -2,11 +2,11 @@
   "colors": {
     "default": {
       "theme_color": {
-        "primary": "#000",
-        "secondary": "#73cfa8",
-        "tertiary": "#fb9289",
-        "quaternary": "#fde179",
-        "quinary": "#73b1ff",
+        "primary": "#594C25",
+        "secondary": "#49BF51",
+        "tertiary": "#A6882D",
+        "quaternary": "#F2CA52",
+        "quinary": "#2F7334",
         "senary": "#F4FDFF",
         "body": "#fff",
         "border": "#DBDBDB",
@@ -15,7 +15,7 @@
       },
       "text_color": {
         "default": "#555555",
-        "dark": "#222222",
+        "dark": "#594C25",
         "light": "#fffefe"
       }
     }
