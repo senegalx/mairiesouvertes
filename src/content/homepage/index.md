@@ -1,8 +1,8 @@
 ---
 # Banner
 banner:
-  title: "The smarter way to save documents"
-  content: "Pellen tesque in ipsum id orci porta dapibus. Sed port titor lectus nibh. Vivamus accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed suscipit tortor eghet felis porttitor volutpat. Vivamus"
+  title: "Gouvernance Transparente et Participative"
+  content: "Découvrez comment MairiesOuvertes transforme la gouvernance locale en Guinée. Grâce aux technologies numériques, nous rendons les politiques publiques plus accessibles et encourageons la participation citoyenne. Participez à notre initiative pour une Guinée plus transparente et responsable."
   image: "/images/banner.png"
   newsletter: true
   supported:
@@ -29,38 +29,29 @@ banner:
 #Brands
 brands:
   - /images/brands/1.png
-  - /images/brands/2.png
-  - /images/brands/3.png
-  - /images/brands/4.png
-  - /images/brands/5.png
-  - /images/brands/6.png
-  - /images/brands/7.png
-  - /images/brands/1.png
-  - /images/brands/2.png
-  - /images/brands/3.png
 
 # Features
 features:
-  subtitle: We are The Ultimate
-  title: A Technology Approach
-  description: Pellen tesque in ipsum id orci porta dapibus. Sed port titor nibh. Vivamus accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula
+  subtitle: Nos Engagements pour une Guinée Meilleure
+  title: Des Actions Concrètes pour une Meilleure Gouvernance
+  description: À travers le projet MairiesOuvertes, nous nous engageons à transformer l’interaction des citoyens avec les politiques publiques locales. Voici nos objectifs principaux
   button:
     enable: true
     label: All Features
     link: "#"
   list: 
     - icon: "FaRegPaperPlane"
-      title: Realtime function
-      description: Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Mauris blandit aliquet elit, eget tincidunt pulvinar a. Curabitur aliquet quam id dui posuere
+      title: Accessibilité de l’information
+      description: Faciliter l'accès public aux Plans Annuels d’Investissement (PAI) et aux Plans de Développement Local (PDL) en ligne.
     - icon: "FaCopy"
-      title: Accurate comment
-      description: Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Mauris blandit aliquet elit, eget tincidunt pulvinar a. Curabitur aliquet quam id dui posuere
+      title: Simplification des documents
+      description: Rendre les documents plus compréhensibles grâce à des résumés, des graphiques et des glossaires.
     - icon: "FaRegLightbulb"
-      title: Plugins support
-      description: Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Mauris blandit aliquet elit, eget tincidunt pulvinar a. Curabitur aliquet quam id dui posuere
+      title: Encouragement de la participation citoyenne
+      description: Promouvoir une implication active des citoyens dans la prise de décision et la mise en œuvre des politiques publiques.
     - icon: "FaObjectUngroup"
-      title: All Integrations
-      description: Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Mauris blandit aliquet elit, eget tincidunt pulvinar a. Curabitur aliquet quam id dui posuere
+      title: Renforcement de la reddition des comptes
+      description: Accroître la responsabilité des autorités locales en permettant aux citoyens de suivre et évaluer les actions publiques.
 
 #showcase
 showcase:
@@ -80,16 +71,16 @@ showcase:
 
 #funfact
 funfacts:
-  subtitle: ACHIEVING EXCELLENCE
-  title: A Few Numbers We are Proud
-  description: Pellen tesque in ipsum id orci porta dapibus. titor nibh. Vivamus accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum
+  subtitle: Chiffres Clés du Projet
+  title: Ensemble, pour une Gouvernance Éclairée
+  description: Découvrez l'impact de MairiesOuvertes à travers des chiffres clés qui illustrent notre engagement pour une gouvernance transparente, participative et responsable en Guinée. Nos efforts conjoints avec les citoyens et les autorités locales montrent des progrès tangibles vers un avenir meilleur.
   list:
-    - count: "94 %"
-      text: Client Retention             
-    - count: "70 M+"
-      text: Emails Per Month             
+    - count: "15"
+      text: Communes participantes
+    - count: "100"
+      text: Documents accessibles
     - count: "10 K+"
-      text: Monthly Campaigns 
+      text: Citoyens engagés
       
 #services
 services:
