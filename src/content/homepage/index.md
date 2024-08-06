@@ -28,7 +28,7 @@ banner:
 
 #Brands
 brands:
-  - /images/brands/1.png
+  - /images/brands/logo-terre-solidaire.png
 
 # Features
 features:
