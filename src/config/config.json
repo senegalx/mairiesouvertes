@@ -19,20 +19,20 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Designed And Developed by [themefisher](https://themefisher.com)",
-    "email": "hello@themefisher.com",
-    "phone": "+94746-388817"
+    "copyright": "Conçu et développé par [Les Villageois](https://mairiesouvertes.org)",
+    "email": "contact@lesvillageois.org",
+    "phone": "+224 627 80 32 80"
   },
 
   "navigation_buttons": [
     {
       "enable": true,
       "label": "Login",
-      "link": "/login"
+      "link": "https://cms.mairiesouvertes.org"
     },
     {
       "enable": true,
-      "label": "Get Started",
+      "label": "Contact",
       "link": "/contact"
     }
   ],
@@ -46,6 +46,6 @@
   "metadata": {
     "meta_author": "Mamadou Diagne",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Spydea astro template"
+    "meta_description": "Plateforme citoyenne de suivi-évaluation des politiques publiques locales en Guinée"
   }
 }
