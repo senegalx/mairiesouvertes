@@ -52,10 +52,6 @@
       "url": "/posts"
     },
     {
-      "name": "Contact",
-      "url": "/contact"
-    },
-    {
       "name": "Pages",
       "url": "",
       "hasChildren": true,
@@ -109,19 +105,15 @@
   ],
   "footer": [
     {
-      "title": "Company",
+      "title": "Mairies Ouvertes",
       "links": [
         {
-          "name": "About us",
+          "name": "À-propos",
           "url": "/about"
         },
         {
-          "name": "Contact us",
+          "name": "Contact",
           "url": "/contact"
-        },
-        {
-          "name": "Pricing",
-          "url": "/pricing"
         }
       ]
     },
@@ -129,15 +121,15 @@
       "title": "Resources",
       "links": [
         {
-          "name": "Blog",
-          "url": "/blogs"
+          "name": "Actualités",
+          "url": "/"
         },
         {
-          "name": "Career",
-          "url": "/career"
+          "name": "Publications",
+          "url": "/posts"
         },
         {
-          "name": "Terms & Conditions",
+          "name": "Termes et Conditions",
           "url": "/terms-policy"
         }
       ]

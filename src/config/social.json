@@ -2,23 +2,18 @@
   "main": [
     {
       "name": "facebook",
-      "link": "https://facebook.com/",
+      "link": "https://www.facebook.com/mairies.ouvertes",
       "icon": "FaFacebook"
     },
     {
-      "name": "skype",
-      "link": "https://skype.com/",
-      "icon": "FaSkype"
-    },
-    {
       "name": "twitter",
-      "link": "https://twitter.com/",
+      "link": "https://x.com/MairiesOuvertes",
       "icon": "FaTwitter"
     },
     {
       "name": "linkedin",
       "icon": "FaLinkedin",
-      "link": "https://www.linkedin.com/"
+      "link": "https://www.linkedin.com/company/mairies-ouvertes"
     }
   ]
 }
