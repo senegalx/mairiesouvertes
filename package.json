@@ -7,17 +7,24 @@
   "packageManager": "yarn@1.22.19",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "prestart": "npm run generate && node scripts/modifyGeneratedFile.js",
+    "build": "npm run prestart && astro build",
     "preview": "astro preview",
     "json": "node scripts/jsonGenerator.js",
-    "format": "prettier -w ./src"
+    "format": "prettier -w ./src",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.11.4",
     "@astrojs/mdx": "^2.1.1",
     "@astrojs/react": "^3.0.10",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.0.5",
     "@astrojs/tailwind": "^5.1.0",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.9",
+    "@graphql-codegen/typescript-operations": "^4.2.3",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.0",
     "@iconfu/svg-inject": "^1.2.3",
     "aos": "^2.3.4",
     "astro": "^4.4.0",
