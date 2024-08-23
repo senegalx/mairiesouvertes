@@ -1,0 +1,19 @@
+query MembreList {
+  membres {
+    nodes {
+      title
+      excerpt
+      social {
+        facebook
+        linkedin
+        twitter
+      }
+      featuredImage {
+        node {
+          altText
+          sourceUrl
+        }
+      }
+    }
+  }
+}

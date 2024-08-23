@@ -7,6 +7,7 @@ import PageHeader from "@/partials/PageHeader.astro";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import type { Button, Funfacts, TeamMember } from "types";
+import { getMembreList } from '../lib/contentFetch.astro';
 
 interface Team {
   title: string;
@@ -39,6 +40,8 @@ const {
   team,
   goals,
 }: AboutProps = entry.data;
+
+const members = await getMembreList();
 ---
 
 <Base
@@ -255,7 +258,7 @@ const {
         </div>
         <div class="row gy-4 pt-16">
           {
-            team.members.map((member) => (
+            members.map((member) => (
               <div
                 data-aos="fade-up-sm"
                 data-aos-delay="50"
@@ -266,26 +269,26 @@ const {
                     <Image
                       width={280}
                       height={205}
-                      src={member.avatar}
+                      src={member.featuredImage.node.sourceUrl}
                       alt="Virtual Reality for Training"
                       class="h-full w-full rounded-xl rounded-b-none object-cover"
                     />
                   </div>
                   <div class="px-5 py-8">
                     <h3 class="mb-4 text-xl font-semibold text-dark sm:text-2xl">
-                      {member.name}
+                      {member.title}
                     </h3>
-                    <p>{member.content}</p>
+                    <Fragment set:html={member.excerpt} />
                     <ul class="mt-5 flex flex-wrap items-center gap-4 font-secondary text-dark">
-                      {member.socials.map((item) => {
+                      {member.social.map((item) => {
                         return (
                           <li>
                             <a
-                              href={item.link}
+                              href={item.url}
                               target="_blank"
                               class="inline-flex items-center justify-center h-[45px] w-[45px] rounded-full bg-quinary/10 text-center leading-[45px] transition-colors duration-300 hover:bg-dark/90 hover:text-white"
                             >
-                              <DynamicIcon icon={item.icon} />
+                              <DynamicIcon icon={item.platform} />
                             </a>
                           </li>
                         );
