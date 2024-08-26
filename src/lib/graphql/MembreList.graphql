@@ -1,5 +1,5 @@
 query MembreList {
-  membres {
+  membres(where: {orderby: {field: DATE, order: ASC}}) {
     nodes {
       title
       excerpt

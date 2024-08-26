@@ -266,13 +266,13 @@ const members = await getMembreList();
               >
                 <div class="shadow-default overflow-hidden rounded-xl bg-white p-3 pb-0 transition-all duration-300 hover:-translate-y-1">
                   <div class="h-full max-h-[900px] w-full">
-                    <Image
+                    {member.featuredImage && <Image
                       width={280}
                       height={205}
                       src={member.featuredImage.node.sourceUrl}
                       alt="Virtual Reality for Training"
                       class="h-full w-full rounded-xl rounded-b-none object-cover"
-                    />
+                    />}
                   </div>
                   <div class="px-5 py-8">
                     <h3 class="mb-4 text-xl font-semibold text-dark sm:text-2xl">
