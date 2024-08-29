@@ -1,0 +1,29 @@
+query ArticleList {
+  posts {
+    edges {
+      node {
+        id
+        slug
+        date
+        title
+        content
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+          }
+        }
+        author{
+          node{
+            name
+            firstName
+            lastName
+            avatar{
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
