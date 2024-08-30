@@ -3,18 +3,20 @@ import BlogCard from "@/components/BlogCard.astro";
 import config from "@/config/config.json";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
-import similerItems from "@/lib/utils/similarItems";
+// import similerItems from "@/lib/utils/similarItems";
 import { markdownify, slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
 import LineBg from "./components/LineBg.astro";
 import type { CollectionKey } from "astro:content";
+// import { getArticleBySlug } from '../lib/contentFetch.astro';
 
 const { blog_folder } = config.settings;
 const posts = await getSinglePage(blog_folder as CollectionKey);
 const { post } = Astro.props;
-const similarPosts = similerItems(post, posts, post.slug);
-const { Content } = await post.render();
-const { title, author, image, date, author_avatar } = post.data;
+// const similarPosts = similerItems(post, posts, post.slug);
+// const content = await getArticleBySlug(post.node.slug);
+const { title, author, featuredImage, date, content } = post.node;
+console.log(post.node.slug);
 ---
 
 <section
@@ -23,11 +25,11 @@ const { title, author, image, date, author_avatar } = post.data;
   <div class="container relative z-40">
     <div class="row">
       {
-        image && (
+        featuredImage && (
           <div class="bg-white p-3 rounded-t-xl">
             <Image
               class="h-[350px] outline-white w-full rounded-xl object-cover md:h-[450px]"
-              src="/images/articles/featured-image.jpg"
+              src={featuredImage.node.sourceUrl}
               alt="featured-image"
               width={1272}
               height={450}
@@ -76,7 +78,7 @@ const { title, author, image, date, author_avatar } = post.data;
               class="relative z-20 overflow-hidden rounded-full border-[6px] border-zinc-100"
             >
               <Image
-                src={author_avatar}
+                src={author.node.avatar.url}
                 class="h-[70px] w-[70px] object-cover"
                 width={70}
                 height={70}
@@ -84,10 +86,10 @@ const { title, author, image, date, author_avatar } = post.data;
               />
             </a>
             <a
-              href={`/authors/${slugify(author)}`}
+              href={`/authors/${slugify(author.node.name)}`}
               class="relative z-10 -ml-3 rounded-r-3xl bg-theme-light py-1 pl-6 pr-3 font-primary text-[15px] capitalize text-dark transition-colors hover:text-opacity-70"
             >
-              {author}
+            {author.node.firstName} {author.node.lastName}
             </a>
           </div>
           <span
@@ -103,7 +105,7 @@ const { title, author, image, date, author_avatar } = post.data;
         data-aos-delay="50"
       >
         <div class="content">
-          <Content />
+          <Fragment set:html={content} />
         </div>
       </div>
     </article>
@@ -139,7 +141,7 @@ const { title, author, image, date, author_avatar } = post.data;
       </div>
     </div>
     <div class="row gy-4">
-      {similarPosts.map((post) => <BlogCard data={post} />)}
+      <!-- {similarPosts.map((post) => <BlogCard data={post} />)} -->
     </div>
   </div>
 

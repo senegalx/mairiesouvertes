@@ -10,6 +10,7 @@ import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import { FaCheck } from "react-icons/fa";
 import type { Button, Feature, Funfacts } from "types";
+import { getArticleList } from '../lib/contentFetch.astro';
 
 interface Homepage {
   banner: {
@@ -53,8 +54,9 @@ interface Homepage {
 
 const homepage = await getEntry("homepage", "index");
 const latestPostsLenght = 3;
-const posts = await getSinglePage("posts");
-const sortedPost = sortByDate(posts).slice(0, latestPostsLenght);
+// const posts = await getSinglePage("posts");
+const articles = await getArticleList();
+// const sortedPost = sortByDate(posts).slice(0, latestPostsLenght);
 const {
   banner,
   features,
@@ -697,7 +699,7 @@ const {
           </div>
         </div>
         <div class="row gy-4">
-          {sortedPost.map((post) => <BlogCard data={post} />)}
+          {articles.map((post) => <BlogCard data={post} />)}
         </div>
       </div>
       <LineBg className="line-bg absolute z-20" color="bg-line-sky" />

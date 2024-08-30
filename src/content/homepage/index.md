@@ -96,9 +96,9 @@ services:
 #latest-article
 article:
   subtitle: LATEST ARTICLES
-  title: Take a Look at the Latest Articles from Our Blog
+  title: Découvre notre actualité récente
   button:
     enable: true
-    label: All Features
-    link: "#"
+    label: Toutes l'Actualités
+    link: "/actualites"
 ---

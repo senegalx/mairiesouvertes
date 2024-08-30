@@ -1,0 +1,32 @@
+---
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import PostSingle from "@/layouts/PostSingle.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import type { CollectionKey } from "astro:content";
+import { getArticleList } from '../../lib/contentFetch.astro';
+
+export async function getStaticPaths() {
+  const posts = await getArticleList();
+
+  const paths = posts.map((post) => ({
+    params: {
+      single: post.node.slug,
+    },
+    props: { post },
+  }));
+  return paths;
+}
+
+const { post } = Astro.props;
+const { title, meta_title, description, image } = post.node;
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <PostSingle post={post} />
+</Base>

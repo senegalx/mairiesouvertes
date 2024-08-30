@@ -1,6 +1,6 @@
 ---
 import client from './api/apollo-client';
-import { MembreListDocument } from './gql/generated';
+import { MembreListDocument, ArticleListDocument } from './gql/generated';
 
 export async function getMembreList() {
   const { data } = await client.query({
@@ -26,4 +26,20 @@ export async function getMembreList() {
 
   return members;
 }
+
+export async function getArticleList() {
+  const { data } = await client.query({
+    query: ArticleListDocument,
+  });
+
+  return data.posts.edges;
+}
+
+// export async function getArticleBySlug(slug: string) {
+//   const { data } = useArticleBySlugQuery({
+//     variables: { slug: slug }
+//   });
+
+//   return data;
+// }
 ---
