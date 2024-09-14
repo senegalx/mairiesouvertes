@@ -85,7 +85,12 @@ const { bgColor = "bg-quaternary/20" }: { bgColor?: string } = Astro.props;
               <li class="nav-item nav-dropdown group">
                 <label for={item.name}>
                   <span class="nav-link inline-flex items-center">
-                    {item.name}
+                    {item.url && (
+                      <a href={item.url} class="nav-dropdown-link">
+                        {item.name}
+                      </a>
+                    )}
+                    {!item.url && item.name}
                     <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
                       <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                     </svg>
