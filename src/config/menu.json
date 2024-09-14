@@ -6,44 +6,32 @@
     },
     {
       "name": "À-propos",
-      "url": "/about"
+      "url": "/a-propos"
     },
     {
       "name": "Publications",
-      "url": "/career",
+      "url": "/publications",
       "hasChildren": true,
       "children": [
         {
-          "name": "Boké",
-          "url": "/career"
+          "name": "Daralabé",
+          "url": "/publications/daralabe"
         },
         {
-          "name": "Conakry",
-          "url": "/career"
-        },
-        {
-          "name": "Farana",
-          "url": "/career"
-        },
-        {
-          "name": "Kankan",
-          "url": "/career"
-        },
-        {
-          "name": "Kindia",
-          "url": "/career"
+          "name": "Kalan",
+          "url": "/publications/kalan"
         },
         {
           "name": "Labé",
-          "url": "/career"
+          "url": "/publications/labe"
         },
         {
-          "name": "Mamou",
-          "url": "/career"
+          "name": "Popodara",
+          "url": "/publications/popodara"
         },
         {
-          "name": "Nzérékoré",
-          "url": "/career"
+          "name": "Sannou",
+          "url": "/publications/sannou"
         }
       ]
     },
@@ -109,7 +97,7 @@
       "links": [
         {
           "name": "À-propos",
-          "url": "/about"
+          "url": "/a-propos"
         },
         {
           "name": "Contact",
