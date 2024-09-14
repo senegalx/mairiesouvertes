@@ -1,16 +1,16 @@
 ---
-title: "Drop Us a Line and Will Get Back to You"
+title: "Contactez-nous"
 meta_title: ""
-description: "this is meta description"
+description: "Pour toute question ou demande d'information, contactez-nous. Nous sommes là pour vous écouter et répondre à vos besoins."
 draft: false
 supports:
-  - type: Contact Support
-    email: support@company.com
-    mobile: +1 234 567 8999
-  - type: Contact Careers
-    email: careers@company.com
-    mobile: +1 234 567 8999
-  - type: Contact Press
-    email: press@company.com
-    mobile: +1 234 567 8999
+  - type: Contact Bureau
+    email: contact@lesvillageois.org
+    mobile: +224 627 80 32 80
+  - type: Contact Equipe
+    email: contact@lesvillageois.org
+    mobile: +224 627 80 32 80
+  - type: Contact Volontaires
+    email: contact@lesvillageois.org
+    mobile: +224 627 80 32 80
 ---

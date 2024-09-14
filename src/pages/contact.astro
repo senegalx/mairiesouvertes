@@ -28,48 +28,49 @@ const { title, description, meta_title, image, supports } = entry.data;
           >
             <form method="post" class="row gy-4 text-dark">
               <div class="sm:col-6">
-                <label for="fname" class="form-label">First Name</label>
+                <label for="fname" class="form-label">Prénom</label>
                 <input
                   type="text"
                   class="form-input"
-                  placeholder="Your First Name"
+                  placeholder="Votre prénom"
                   id="fname"
                   name="fname"
                   required
                 />
               </div>
               <div class="sm:col-6">
-                <label for="lname" class="form-label">Last Name</label>
+                <label for="lname" class="form-label">Nom</label>
                 <input
                   type="text"
                   class="form-input"
-                  placeholder="Your Last Name"
+                  placeholder="Votre nom"
                   id="lname"
                   name="lname"
                   required
                 />
               </div>
               <div class="col-12">
-                <label for="email" class="form-label">Email Address</label>
+                <label for="email" class="form-label">Email</label>
                 <input
                   type="email"
                   class="form-input"
-                  placeholder="Your Email Address"
+                  placeholder="Adresse E-mail"
                   id="email"
                   required
                   name="email"
                 />
               </div>
               <div class="col-12">
-                <label for="purpose" class="form-label">Reason/Purpose</label>
+                <label for="purpose" class="form-label">Raison/But</label>
                 <select
                   id="purpose"
                   required
                   class="w-full rounded-lg border-border px-5 py-4 text-sm"
                 >
-                  <option value="0">General Inquiry</option>
-                  <option value="1">Support Request</option>
-                  <option value="2">Partnership Opportunity</option>
+                  <option value="0">Poser une question</option>
+                  <option value="1">Suggérer une amélioration</option>
+                  <option value="2">Devenir volontaire</option>
+                  <option value="3">Devenir partenaire</option>
                 </select>
               </div>
               <div class="col-12">
@@ -77,16 +78,14 @@ const { title, description, meta_title, image, supports } = entry.data;
                 <textarea
                   name="message"
                   class="form-textarea"
-                  placeholder="Your Message"
+                  placeholder="Votre Message"
                   id="message"
                   cols="30"
                   required
                   rows="4"></textarea>
               </div>
               <div class="col-12 text-right">
-                <button type="submit" class="btn btn-primary">
-                  Submit Now
-                </button>
+                <button type="submit" class="btn btn-primary"> Envoyer </button>
               </div>
             </form>
           </div>
