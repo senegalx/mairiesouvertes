@@ -1,15 +1,15 @@
 ---
 enable: true
-title: "Sign up and Create Your Online Store Today!"
+title: "Participez à la Transparence et à la Gouvernance Locale en Guinée !"
 image: "/images/cta-image.png"
 buttons:
   primary:
     enable: true
-    label: "Get A Quote"
-    link: "https://github.com/zeon-studio/astroplate"
+    label: "En Savoir Plus"
+    link: "/a-propos"
   secondary:
     enable: true
-    label: "Started Now"
-    link: "https://github.com/zeon-studio/astroplate"
+    label: "Devenir Volontaire"
+    link: "/contact"
   
 ---
