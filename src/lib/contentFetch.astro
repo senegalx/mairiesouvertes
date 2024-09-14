@@ -1,28 +1,32 @@
 ---
-import client from './api/apollo-client';
-import { MembreListDocument, ArticleListDocument } from './gql/generated';
+import client from "./api/apollo-client";
+import {
+  MembreListDocument,
+  ArticleListDocument,
+  CommuneListDocument,
+} from "./gql/generated";
 
 export async function getMembreList() {
   const { data } = await client.query({
     query: MembreListDocument,
   });
 
-  const members = data.membres.nodes.map(membre => {
-  const socialArray = Object.keys(membre.social)
-    .filter(key => key !== '__typename')
-    .map(key => {
-      const platformName = `Fa${key.charAt(0).toUpperCase()}${key.slice(1)}`;
-      return {
-        platform: platformName,
-        url: membre.social[key]
-      };
-    });
+  const members = data.membres.nodes.map((membre) => {
+    const socialArray = Object.keys(membre.social)
+      .filter((key) => key !== "__typename")
+      .map((key) => {
+        const platformName = `Fa${key.charAt(0).toUpperCase()}${key.slice(1)}`;
+        return {
+          platform: platformName,
+          url: membre.social[key],
+        };
+      });
 
-  return {
-    ...membre, // Copie toutes les autres propriétés de membre
-    social: socialArray // Remplace la propriété social par le nouveau tableau
-  };
-});
+    return {
+      ...membre, // Copie toutes les autres propriétés de membre
+      social: socialArray, // Remplace la propriété social par le nouveau tableau
+    };
+  });
 
   return members;
 }
@@ -42,4 +46,12 @@ export async function getArticleList() {
 
 //   return data;
 // }
+
+export async function getCommuneList() {
+  const { data } = await client.query({
+    query: CommuneListDocument,
+  });
+
+  return data.pageBy.children.nodes;
+}
 ---
