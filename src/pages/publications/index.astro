@@ -1,0 +1,83 @@
+---
+import Base from "@/layouts/Base.astro";
+// import { getSinglePage } from "@/lib/contentParser.astro";
+// import { markdownify } from "@/lib/utils/textConverter";
+import PageHeader from "@/partials/PageHeader.astro";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+import { getCommuneList } from "../../lib/contentFetch.astro";
+
+const integrationIndex = await getEntry("publications", "-index");
+const communes = await getCommuneList();
+// const technologies = await getSinglePage("publications");
+// const removeDrafts = technologies.filter(
+//   (technology) => !technology.data.draft
+// );
+---
+
+<Base
+  title={integrationIndex.data.title}
+  meta_title={integrationIndex.data.meta_title}
+>
+  <main>
+    <PageHeader title={integrationIndex.data.title} />
+    <section
+      class="section-md relative mt-[-28rem] overflow-hidden md:mt-[-32rem]"
+    >
+      <div class="container relative z-20">
+        <div class="row gy-4">
+          {
+            communes.map((commune) => (
+              <div data-aos="fade-up-sm" class="md:col-6 lg:col-4">
+                <div class="shadow-default overflow-hidden rounded-xl bg-white p-10">
+                  <div class="mb-6 flex flex-wrap items-center justify-between gap-y-4">
+                    {commune.featuredImage && (
+                      <Image
+                        width={72}
+                        height={72}
+                        src={commune.featuredImage.node.sourceUrl || ""}
+                        alt={commune.featuredImage.node.altText || ""}
+                        class="rounded-xl"
+                      />
+                    )}
+                    <a
+                      href={`/publications/${commune.slug}`}
+                      class="btn btn-outline-primary"
+                    >
+                      <i class="fa-solid fa-plus mr-1 text-sm" />
+                      Publications
+                    </a>
+                  </div>
+                  <h3 class="mb-4 font-primary text-xl font-semibold text-dark sm:text-2xl">
+                    <a href={`/publications/${commune.slug}`}>
+                      {commune.title}
+                    </a>
+                  </h3>
+                  <p set:html={commune.content!} />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div
+          class="pointer-events-none absolute left-[-4%] top-[30%] -z-10 select-none"
+        >
+          <img
+            class="inject-svg text-tertiary"
+            src="/images/shapes/integration-s-1.svg"
+            alt="shape"
+          />
+        </div>
+        <div
+          class="pointer-events-none absolute bottom-[30%] right-[-5%] -z-10 select-none"
+        >
+          <img
+            class="inject-svg text-quaternary"
+            src="/images/shapes/integration-s-2.svg"
+            alt="shape"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

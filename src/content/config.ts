@@ -43,9 +43,23 @@ const integrationsCollection = defineCollection({
   }),
 });
 
+// integrations collection schema
+const publicationsCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    meta_title: z.string().optional(),
+    email: z.string().optional(),
+    icon: z.string().optional(),
+    description: z.string().optional(),
+    draft: z.boolean().optional(),
+  }),
+});
+
 // Export collections
 export const collections = {
   posts: postsCollection,
   authors: authorsCollection,
-  integrations: integrationsCollection
+  integrations: integrationsCollection,
+  publications: publicationsCollection
+
 };

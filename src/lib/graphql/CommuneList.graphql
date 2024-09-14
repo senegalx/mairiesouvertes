@@ -1,0 +1,27 @@
+query CommuneList {
+  pageBy(uri: "publications") {
+    children(where: { orderby: { field: SLUG, order: ASC } }) {
+      nodes {
+        slug
+        ... on Page {
+          title
+          content
+          featuredImage {
+            node {
+              altText
+              sourceUrl
+            }
+          }
+          pageCommune {
+            imageUne {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
