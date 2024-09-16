@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import type { Testimonial } from "types";
+import { getTemoignageUne} from "../../lib/contentFetch.astro";
 interface TestimonialSection {
   data: {
     enable: boolean,
@@ -12,6 +13,7 @@ interface TestimonialSection {
 }
 
 const {data: testimonial }: TestimonialSection = await getEntry("sections", "testimonial");
+const temoignage = await getTemoignageUne();
 
 ---
 {testimonial.enable && <section class="section relative z-20 overflow-hidden">
@@ -32,17 +34,17 @@ const {data: testimonial }: TestimonialSection = await getEntry("sections", "tes
           </div>
         </div>
         <div class="mb-4">
-          {testimonial.list.map((testimonial_item) => 
+          {temoignage.map((testimonial_item) => 
               <div
               data-aos="fade-up-sm"
               class="shadow-default mb-6 flex flex-col overflow-hidden rounded-xl border border-border/50 bg-white !transition-all !duration-300 last-of-type:mb-0 hover:shadow-sm sm:flex-row sm:border-0">
               <div class="box-bg">
-                <Image
+                {testimonial_item.temoin.commune.nodes[0].featuredImage && <Image
                   width={140}
                   height={40}
-                  src={testimonial_item.company_logo}
+                  src={testimonial_item.temoin.commune.nodes[0].featuredImage.node.sourceUrl}
                   class="max-w-[140px] sm:min-w-[40px] sm:-rotate-90 sm:transform"
-                  alt="logo" />
+                  alt={testimonial_item.temoin.commune.nodes[0].featuredImage.node.altText} />}
               </div>
               <div class="px-6 py-12">
                 <h3 class="mb-5 text-xl font-semibold sm:text-2xl">
@@ -57,12 +59,12 @@ const {data: testimonial }: TestimonialSection = await getEntry("sections", "tes
                       width={70}
                       height={70}
                       class="h-[70px] w-[70px] object-cover"
-                      src={testimonial_item.avatar}
-                      alt="Devon Lane" />
+                      src={testimonial_item.featuredImage.node.sourceUrl}
+                      alt={testimonial_item.featuredImage.node.altText} />
                   </div>
                   <div class="flex flex-col justify-center">
-                    <h4 class="mb-1 font-primary text-lg">{testimonial_item.name}</h4>
-                    <p>{testimonial_item.designation}</p>
+                    <h4 class="mb-1 font-primary text-lg">{testimonial_item.temoin.nom}</h4>
+                    <p>{testimonial_item.temoin.designation}</p>
                   </div>
                 </div>
               </div>

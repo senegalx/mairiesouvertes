@@ -4,6 +4,7 @@ import {
   MembreListDocument,
   ArticleListDocument,
   CommuneListDocument,
+  TemoignageUneDocument,
 } from "./gql/generated";
 
 export async function getMembreList() {
@@ -53,5 +54,13 @@ export async function getCommuneList() {
   });
 
   return data.pageBy.children.nodes;
+}
+
+export async function getTemoignageUne() {
+  const { data } = await client.query({
+    query: TemoignageUneDocument,
+  });
+
+  return data.temoignages.nodes;
 }
 ---
