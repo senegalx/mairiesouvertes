@@ -51,7 +51,7 @@ const temoignage = await getTemoignageUne();
                   {testimonial_item.title}
                 </h3>
                 <p class="mb-6 text-lg">
-                  {testimonial_item.content}
+                  <p set:html={testimonial_item.content} />
                 </p>
                 <div class="flex gap-4">
                   <div class="items-start rounded-full">
