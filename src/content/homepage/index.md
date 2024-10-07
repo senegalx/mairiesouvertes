@@ -17,14 +17,11 @@ banner:
       - icon: "FaAndroid"
         link: "#?"
     facility:
-      - Boké
-      - Conakry
-      - Farana
-      - Kankan
-      - Kindia
+      - Daralabé
+      - Kalan
       - Labé
-      - Mamou
-      - Nzérékoré
+      - Popodara
+      - Sannou
 
 #Brands
 brands:
