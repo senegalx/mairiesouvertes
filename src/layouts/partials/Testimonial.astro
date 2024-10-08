@@ -12,8 +12,16 @@ interface TestimonialSection {
   }
 }
 
+interface Props {
+  communeSlug?: string;
+  limit?: number;
+}
+const { communeSlug, limit = 4 } = Astro.props;
+
 const {data: testimonial }: TestimonialSection = await getEntry("sections", "testimonial");
-const temoignage = await getTemoignageUne();
+const temoignage = await getTemoignageUne(communeSlug);
+
+const limitedTemoignages = temoignage.slice(0, limit);
 
 ---
 {testimonial.enable && <section class="section relative z-20 overflow-hidden">
@@ -34,7 +42,7 @@ const temoignage = await getTemoignageUne();
           </div>
         </div>
         <div class="mb-4">
-          {temoignage.map((testimonial_item) => 
+          {limitedTemoignages.map((testimonial_item) => 
               <div
               data-aos="fade-up-sm"
               class="shadow-default mb-6 flex flex-col overflow-hidden rounded-xl border border-border/50 bg-white !transition-all !duration-300 last-of-type:mb-0 hover:shadow-sm sm:flex-row sm:border-0">

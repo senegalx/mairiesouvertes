@@ -56,11 +56,19 @@ export async function getCommuneList() {
   return data.pageBy.children.nodes;
 }
 
-export async function getTemoignageUne() {
+export async function getTemoignageUne(communeSlug: string | undefined = undefined) {
   const { data } = await client.query({
     query: TemoignageUneDocument,
   });
 
-  return data.temoignages.nodes;
+  let temoignages = data.temoignages.nodes;
+
+  if (communeSlug) {
+    temoignages = temoignages.filter(temoignage => 
+      temoignage.temoin.commune.nodes.some(commune => commune.slug === communeSlug)
+    );
+  }
+  
+  return temoignages;
 }
 ---

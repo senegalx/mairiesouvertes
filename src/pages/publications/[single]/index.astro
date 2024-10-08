@@ -34,7 +34,7 @@ export async function getStaticPaths() {
 const { data }: { data: CareersPage } = await getEntry("careers", "-index");
 const { meta_title, image, benefits } = data;
 const { commune } = Astro.props;
-const { title, content, pageCommune } = commune;
+const { title, content, pageCommune, slug } = commune;
 const description = content ? content.replace(/<[^>]*>/g, "") : "";
 ---
 
@@ -142,7 +142,7 @@ const description = content ? content.replace(/<[^>]*>/g, "") : "";
     <!-- End Benfits -->
 
     <!-- Testimonial -->
-    <Testimonial />
+    <Testimonial communeSlug={slug} />
     <!-- End Testimonial -->
 
     <!-- Open-Position -->
