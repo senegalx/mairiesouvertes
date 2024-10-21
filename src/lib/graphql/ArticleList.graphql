@@ -15,6 +15,7 @@ query ArticleList {
         }
         author{
           node{
+            slug
             name
             firstName
             lastName

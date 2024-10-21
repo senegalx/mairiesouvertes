@@ -73,7 +73,7 @@ const { title, author, featuredImage, date, content } = post.node;
           <div class="flex items-center">
             <a
               title="author image"
-              href={`/authors/${slugify(author)}`}
+              href={`/auteurs/${slugify(author)}`}
               class="relative z-20 overflow-hidden rounded-full border-[6px] border-zinc-100"
             >
               <Image
@@ -85,7 +85,7 @@ const { title, author, featuredImage, date, content } = post.node;
               />
             </a>
             <a
-              href={`/authors/${slugify(author.node.name)}`}
+              href={`/auteurs/${slugify(author.node.name)}`}
               class="relative z-10 -ml-3 rounded-r-3xl bg-theme-light py-1 pl-6 pr-3 font-primary text-[15px] capitalize text-dark transition-colors hover:text-opacity-70"
             >
             {author.node.firstName} {author.node.lastName}

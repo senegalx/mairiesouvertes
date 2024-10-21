@@ -5,6 +5,8 @@ import {
   ArticleListDocument,
   CommuneListDocument,
   TemoignageUneDocument,
+  ArticleUneDocument,
+  AuteursDocument
 } from "./gql/generated";
 
 export async function getMembreList() {
@@ -70,5 +72,38 @@ export async function getTemoignageUne(communeSlug: string | undefined = undefin
   }
   
   return temoignages;
+}
+
+export async function getArticleUne() {
+  const { data } = await client.query({
+    query: ArticleUneDocument,
+  });
+
+  return data.posts.edges;
+}
+
+export async function getAuteurs() {
+  const { data } = await client.query({
+    query: AuteursDocument,
+  });
+
+  const users = data.users.nodes.map((membre) => {
+    const socialArray = Object.keys(membre.social)
+      .filter((key) => key !== "__typename")
+      .map((key) => {
+        const platformName = `Fa${key.charAt(0).toUpperCase()}${key.slice(1)}`;
+        return {
+          platform: platformName,
+          url: membre.social[key],
+        };
+      });
+
+    return {
+      ...membre, // Copie toutes les autres propriétés de membre
+      social: socialArray, // Remplace la propriété social par le nouveau tableau
+    };
+  });
+  
+  return users;
 }
 ---
