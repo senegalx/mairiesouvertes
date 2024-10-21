@@ -1,0 +1,19 @@
+query Auteurs {
+  users {
+    nodes {
+      name
+      slug
+      firstName
+      lastName
+      description
+      avatar {
+        url
+      }
+      social {
+        facebook
+        linkedin
+        twitter
+      }
+    }
+  }
+}

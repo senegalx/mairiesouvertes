@@ -7,21 +7,22 @@ import { Image } from "astro:assets";
 import LineBg from "./components/LineBg.astro";
 import Social from "./components/Social.astro";
 import type { CollectionKey } from "astro:content";
+import NavHeader from "@/partials/NavHeader.astro";
 
 const { blog_folder } = config.settings;
 const posts = await getSinglePage(blog_folder as CollectionKey);
 const { author } = Astro.props;
-const { Content } = await author.render();
-const { title, image, social } = author.data;
+const { firstName, lastName, description, avatar, social } = author;
 
 const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title),
+  (post) => slugify(post.data.author) === slugify(firstName),
 );
 ---
 
 <section
   class="section page-header author-single relative overflow-hidden after:z-10"
 >
+  <NavHeader />
   <LineBg className="line-bg absolute z-20" color="bg-line-yellow" />
   <div class="container relative z-30">
     <div class="row">
@@ -34,11 +35,11 @@ const postFilterByAuthor = posts.filter(
             >
               <div class="mb-6 h-fit w-full">
                 {
-                  image && (
+                  avatar && (
                     <Image
                       class="mx-auto h-[180px] w-[180px] rounded-full object-cover"
-                      src={image}
-                      alt={title}
+                      src={avatar?.url}
+                      alt={firstName}
                       width={180}
                       height={180}
                     />
@@ -48,7 +49,7 @@ const postFilterByAuthor = posts.filter(
               <div class="px-5 text-center">
                 <h3
                   class="mb-4 text-xl font-semibold text-dark sm:text-2xl"
-                  set:html={markdownify(title)}
+                  set:html={`${firstName} ${lastName}`}
                 />
                 <Social
                   source={social}
@@ -62,7 +63,7 @@ const postFilterByAuthor = posts.filter(
               class="lg:col-8 xl:col-9"
             >
               <div class="content lg:px-10">
-                <Content />
+                {description}
               </div>
             </div>
           </div>
@@ -120,9 +121,9 @@ const postFilterByAuthor = posts.filter(
       <div class="col-12 text-center">
         <h2 class="font-semibold" data-aos="fade-up-sm">
           <span class="text-zinc-500 text-opacity-70">
-            Recent Post By:{" "}
+            Article Récent De:{" "}
           </span>
-          {title}
+          {firstName} {lastName}
         </h2>
       </div>
     </div>

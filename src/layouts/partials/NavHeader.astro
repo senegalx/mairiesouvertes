@@ -1,0 +1,17 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import LineBg from "@/components/LineBg.astro";
+import { humanize, markdownify } from "@/lib/utils/textConverter";
+
+const {
+  breadcrumb = true,
+}: { title?: string; description?: string; breadcrumb?: boolean } = Astro.props;
+---
+<div class="relative z-30">
+  <div class="row items-center">
+    <div class="mx-auto text-center lg:col-8">
+      {breadcrumb && <Breadcrumbs className="breadcrumb" />}
+    </div>
+  </div>
+</div>
+<!-- End Main Content -->

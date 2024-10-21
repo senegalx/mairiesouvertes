@@ -5,9 +5,10 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import type { CollectionKey } from "astro:content";
 import { getEntry } from "astro:content";
+import { getAuteurs } from '@/lib/contentFetch.astro';
 
 const authorIndex = await getEntry("authors" as CollectionKey, "-index");
-const authors = await getSinglePage("authors");
+const auteurs = await getAuteurs();
 ---
 
 <Base title={authorIndex.data.title}>
@@ -17,7 +18,7 @@ const authors = await getSinglePage("authors");
     <div class="container relative z-40">
       <div class="row gy-5">
         {
-          authors.map((author) => (
+          auteurs.map((author) => (
             <div data-aos="fade-up-sm" class="md:col-6 lg:col-4 xl:col-3">
               <AuthorCard data={author} />
             </div>

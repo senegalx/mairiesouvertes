@@ -2,11 +2,12 @@
 import AuthorSingle from "@/layouts/AuthorSingle.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import { getAuteurs } from '@/lib/contentFetch.astro';
 
 export async function getStaticPaths() {
-  const authors = await getSinglePage("authors");
+  const auteurs = await getAuteurs();
 
-  const paths = authors.map((author) => ({
+  const paths = auteurs.map((author) => ({
     params: {
       single: author.slug,
     },
@@ -16,14 +17,14 @@ export async function getStaticPaths() {
 }
 
 const { author } = Astro.props;
-const { title, meta_title, description, image } = author.data;
+const { name, description, avatar } = author;
 ---
 
 <Base
-  title={title}
-  meta_title={meta_title}
+  title={name}
+  meta_title={name}
   description={description}
-  image={image}
+  image={avatar?.url}
 >
   <AuthorSingle author={author} />
 </Base>
