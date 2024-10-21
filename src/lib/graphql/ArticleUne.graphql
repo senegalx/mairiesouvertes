@@ -1,0 +1,29 @@
+query ArticleUne {
+  posts(where: {orderby: {field: DATE, order: DESC}}, first: 6) {
+    edges {
+      node {
+        id
+        slug
+        date
+        title
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+          }
+        }
+        author{
+          node{
+            slug
+            name
+            firstName
+            lastName
+            avatar{
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
