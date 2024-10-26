@@ -2,12 +2,13 @@
 import DynamicIcon from "@/helpers/DynamicIcon";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import OpenPosition from "@/partials/OpenPosition.astro";
+import CommunPublication from "@/partials/CommunPublication.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import { getCommuneList } from "../../../lib/contentFetch.astro";
+import { getPublicationByCommune } from '../../../lib/contentFetch.astro';
 
 interface CareersPage {
   title: string;
@@ -36,6 +37,7 @@ const { meta_title, image, benefits } = data;
 const { commune } = Astro.props;
 const { title, content, pageCommune, slug } = commune;
 const description = content ? content.replace(/<[^>]*>/g, "") : "";
+const puplications = title ? await getPublicationByCommune(title) : [];
 ---
 
 <Base
@@ -146,7 +148,7 @@ const description = content ? content.replace(/<[^>]*>/g, "") : "";
     <!-- End Testimonial -->
 
     <!-- Open-Position -->
-    <OpenPosition />
+    <CommunPublication commune={slug} puplications={puplications} />
     <!-- End Open-Position -->
   </main>
 </Base>

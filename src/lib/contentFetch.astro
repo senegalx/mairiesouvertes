@@ -6,7 +6,10 @@ import {
   CommuneListDocument,
   TemoignageUneDocument,
   ArticleUneDocument,
-  AuteursDocument
+  AuteursDocument,
+  PublicationsDocument,
+  usePublicationByCommuneQuery,
+  PublicationByCommuneDocument
 } from "./gql/generated";
 
 export async function getMembreList() {
@@ -41,14 +44,6 @@ export async function getArticleList() {
 
   return data.posts.edges;
 }
-
-// export async function getArticleBySlug(slug: string) {
-//   const { data } = useArticleBySlugQuery({
-//     variables: { slug: slug }
-//   });
-
-//   return data;
-// }
 
 export async function getCommuneList() {
   const { data } = await client.query({
@@ -105,5 +100,22 @@ export async function getAuteurs() {
   });
   
   return users;
+}
+
+export async function getPublications() {
+  const { data } = await client.query({
+    query: PublicationsDocument,
+  });
+  
+  return data?.publications?.nodes || [];
+}
+
+export async function getPublicationByCommune(communeName: string) {
+  const { data } = await client.query({
+    query: PublicationByCommuneDocument,
+    variables: { communeName: communeName }
+  });
+
+  return data?.publications?.nodes || [];
 }
 ---

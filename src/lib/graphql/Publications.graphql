@@ -1,0 +1,26 @@
+query Publications {
+  publications {
+    nodes {
+      slug
+      title
+      content
+      commune {
+        nom
+        date
+        auteur {
+          nodes {
+            name
+            avatar {
+              url
+            }
+          }
+        }
+      }
+      documents {
+        title
+        type
+        url
+      }
+    }
+  }
+}
