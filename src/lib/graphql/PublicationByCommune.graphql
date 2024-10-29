@@ -3,11 +3,14 @@ query PublicationByCommune($communeName: String!) {
   nodes {
       slug
       title
-      content
+      excerpt
       terms {
         nodes {
           name
         }
+      }
+      documents {
+        type
       }
     }
   }
