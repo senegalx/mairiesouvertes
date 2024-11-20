@@ -18,4 +18,105 @@ collections: # A list of collections the CMS should be able to edit
         name: homepage
         file: /src/content/homepage/index.md
         fields:
-          - 
+          - label: "Banner Section"
+            name: "banner"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Show Newsletter", name: "newsletter", widget: "boolean" }
+              - label: "Supported Section"
+                name: "supported"
+                widget: "object"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - label: "Support List"
+                    name: "list"
+                    widget: "list"
+                    fields:
+                      - { label: "Icon", name: "icon", widget: "string" }
+                      - { label: "Link", name: "link", widget: "string" }
+                  - label: "Facility List"
+                    name: "facility"
+                    widget: "list"
+                    field: { label: "Facility Name", name: "facility", widget: "string" }
+
+          - label: "Brands"
+            name: "brands"
+            widget: "list"
+            field: { label: "Brand Logo", name: "brand", widget: "image" }
+
+          - label: "Features Section"
+            name: "features"
+            widget: "object"
+            fields:
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Button"
+                name: "button"
+                widget: "object"
+                fields:
+                  - { label: "Enable Button", name: "enable", widget: "boolean" }
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Link", name: "link", widget: "string" }
+              - label: "Feature List"
+                name: "list"
+                widget: "list"
+                fields:
+                  - { label: "Icon", name: "icon", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+
+          - label: "Showcase Section"
+            name: "showcase"
+            widget: "object"
+            fields:
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Showcase List"
+                name: "list"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Image", name: "image", widget: "image" }
+
+          - label: "Funfacts Section"
+            name: "funfacts"
+            widget: "object"
+            fields:
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Funfacts List"
+                name: "list"
+                widget: "list"
+                fields:
+                  - { label: "Count", name: "count", widget: "string" }
+                  - { label: "Text", name: "text", widget: "string" }
+
+          - label: "Services Section"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Image", name: "image", widget: "image" }
+
+          - label: "Latest Article Section"
+            name: "article"
+            widget: "object"
+            fields:
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Button"
+                name: "button"
+                widget: "object"
+                fields:
+                  - { label: "Enable Button", name: "enable", widget: "boolean" }
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Link", name: "link", widget: "string" }
