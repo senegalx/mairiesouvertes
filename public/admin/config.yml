@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway #github
+  repo: senegalx/mairiesouvertes # Path to your Github repository
+  branch: main # Branch to update (master by default)
+
+media_folder: "public/images/uploads" # Folder where user uploaded files should go
+public_folder: "/images/uploads"
+
+logo_url: /images/logo-dark.png
+
+slug: { { slug } }
+
+collections: # A list of collections the CMS should be able to edit
+  - label: Pages
+    name: pages
+    files:
+      - label: Accueil
+        name: homepage
+        file: /src/content/homepage/index.md
+        fields:
+          - 
