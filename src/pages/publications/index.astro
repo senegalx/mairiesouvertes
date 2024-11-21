@@ -1,7 +1,5 @@
 ---
 import Base from "@/layouts/Base.astro";
-// import { getSinglePage } from "@/lib/contentParser.astro";
-// import { markdownify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
@@ -9,10 +7,6 @@ import { getCommuneList } from "../../lib/contentFetch.astro";
 
 const integrationIndex = await getEntry("publications", "-index");
 const communes = await getCommuneList();
-// const technologies = await getSinglePage("publications");
-// const removeDrafts = technologies.filter(
-//   (technology) => !technology.data.draft
-// );
 ---
 
 <Base
@@ -53,7 +47,7 @@ const communes = await getCommuneList();
                       {commune.title}
                     </a>
                   </h3>
-                  <p set:html={commune.content!} />
+                  <p set:html={commune.pageCommune.description!} />
                 </div>
               </div>
             ))
