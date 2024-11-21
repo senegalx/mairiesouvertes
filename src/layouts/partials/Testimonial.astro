@@ -47,12 +47,16 @@ const limitedTemoignages = temoignage.slice(0, limit);
               data-aos="fade-up-sm"
               class="shadow-default mb-6 flex flex-col overflow-hidden rounded-xl border border-border/50 bg-white !transition-all !duration-300 last-of-type:mb-0 hover:shadow-sm sm:flex-row sm:border-0">
               <div class="box-bg">
-                {testimonial_item.temoin.commune.nodes[0].featuredImage && <Image
-                  width={140}
-                  height={40}
-                  src={testimonial_item.temoin.commune.nodes[0].featuredImage.node.sourceUrl}
-                  class="max-w-[140px] sm:min-w-[40px] sm:-rotate-90 sm:transform"
-                  alt={testimonial_item.temoin.commune.nodes[0].featuredImage.node.altText} />}
+                {testimonial_item.temoin.commune.nodes[0].featuredImage ? (
+                  <Image
+                    width={140}
+                    height={40}
+                    src={testimonial_item.temoin.commune.nodes[0].featuredImage.node.sourceUrl}
+                    class="max-w-[140px] sm:min-w-[40px] sm:-rotate-90 sm:transform"
+                    alt={testimonial_item.temoin.commune.nodes[0].featuredImage.node.altText} />
+                ) : (
+                  <h4 class="font-primary text-2xl sm:-rotate-90 sm:transform">{testimonial_item.temoin.commune.nodes[0].title}</h4>
+                )}
               </div>
               <div class="px-6 py-12">
                 <h3 class="mb-5 text-xl font-semibold sm:text-2xl">

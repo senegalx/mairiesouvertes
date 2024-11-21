@@ -1,4 +1,5 @@
 ---
+import ContentToggle from "@/components/ContentToggle";
 import DynamicIcon from "@/helpers/DynamicIcon";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
@@ -36,7 +37,6 @@ const { data }: { data: CareersPage } = await getEntry("careers", "-index");
 const { meta_title, image, benefits } = data;
 const { commune } = Astro.props;
 const { title, content, pageCommune, slug } = commune;
-const description = content ? content.replace(/<[^>]*>/g, "") : "";
 const puplications = title ? await getPublicationByCommune(title) : [];
 ---
 
@@ -44,10 +44,10 @@ const puplications = title ? await getPublicationByCommune(title) : [];
   title={title}
   meta_title={meta_title}
   image={image}
-  description={description}
+  description={pageCommune.description}
 >
   <main>
-    <PageHeader title={title} description={description} />
+    <PageHeader title={title} description={pageCommune.description} />
 
     <section class="section relative z-20 mt-[-26rem] overflow-hidden pb-0">
       <div class="container relative">
@@ -68,6 +68,18 @@ const puplications = title ? await getPublicationByCommune(title) : [];
                   />
                 )
               }
+            </div>
+            <div class="mx-8 px-10">
+              {content && (
+                <ContentToggle 
+                  initialState={false}
+                  previewLength={350}
+                  htmlContent={true}
+                  className="mt-8"
+                  content={content}
+                  client:load
+                />
+              )}
             </div>
           </div>
         </div>

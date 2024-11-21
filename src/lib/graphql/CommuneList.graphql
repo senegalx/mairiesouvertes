@@ -13,6 +13,7 @@ query CommuneList {
             }
           }
           pageCommune {
+            description
             imageUne {
               node {
                 altText
