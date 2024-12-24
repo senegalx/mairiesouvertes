@@ -9,7 +9,8 @@ import {
   AuteursDocument,
   PublicationsDocument,
   usePublicationByCommuneQuery,
-  PublicationByCommuneDocument
+  PublicationByCommuneDocument,
+  PublicationsUneDocument
 } from "./gql/generated";
 
 export async function getMembreList() {
@@ -107,6 +108,14 @@ export async function getPublications() {
     query: PublicationsDocument,
   });
   
+  return data?.publications?.nodes || [];
+}
+
+export async function getPublicationsUne() {
+  const { data } = await client.query({
+    query: PublicationsUneDocument,
+  });
+
   return data?.publications?.nodes || [];
 }
 

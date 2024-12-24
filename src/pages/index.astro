@@ -6,11 +6,13 @@ import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import Testimonial from "@/partials/Testimonial.astro";
+import UnePublication from "@/partials/UnePublication.astro";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import { FaCheck } from "react-icons/fa";
 import type { Button, Feature, Funfacts } from "types";
-import { getArticleUne } from '../lib/contentFetch.astro';
+import { getArticleUne, getPublicationsUne } from '../lib/contentFetch.astro';
+const publications = await getPublicationsUne();
 
 interface Homepage {
   banner: {
@@ -363,47 +365,9 @@ const {
         </div>
         <!-- End Section Title  -->
         <div class="row gy-4" data-tab-group="">
-          <div class="flex flex-wrap gap-4 xl:col-4 lg:gap-6" data-tab-nav>
-            {
-              showcase.list.map((item, index: number) => (
-                <button
-                  class={`group ${index === 0 && "active"}`}
-                  data-tab={index}
-                  data-aos="fade-up-sm"
-                >
-                  <div class="h-full rounded-xl border border-border/50 bg-white px-4 py-4 text-left group-[.active]:border-white group-[.active]:shadow-md xl:px-8 xl:py-10">
-                    <h3 class="text-sm font-semibold xl:mb-6 xl:text-2xl">
-                      {item.title}
-                    </h3>
-                    <p class="hidden xl:block">{item.description}</p>
-                  </div>
-                </button>
-              ))
-            }
-          </div>
           <!-- End Showcase Tab Button  -->
-          <div class="relative xl:col-8" data-aos="fade-in" data-tab-content>
-            {
-              showcase.list.map((item, index: number) => (
-                <div
-                  class={`shadow-default group relative ${
-                    index === 0 && "active"
-                  }`}
-                  data-tab-panel={index}
-                >
-                  <div class="invisible h-0 opacity-70 transition-opacity duration-300 group-[.active]:visible group-[.active]:h-full group-[.active]:opacity-100">
-                    <Image
-                      class="h-full w-full rounded-xl"
-                      src={item.image}
-                      alt="feature image"
-                      width={850}
-                      height={617}
-                    />
-                  </div>
-                </div>
-              ))
-            }
-
+          <div class="relative xl:col-12" data-aos="fade-in" data-tab-content>
+            <UnePublication puplications={publications} />
             <!-- Start Bg Shape -->
             <div
               data-aos="fade-up-md"

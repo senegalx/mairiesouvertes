@@ -1,0 +1,17 @@
+query PublicationsUne {
+  publications(where: {orderby: {field: DATE, order: DESC}}, first: 4) {
+    nodes {
+      slug
+      title
+      excerpt
+      commune {
+        nom
+      }
+      documents {
+        title
+        type
+        url
+      }
+    }
+  }
+}

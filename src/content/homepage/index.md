@@ -52,9 +52,9 @@ features:
 
 #showcase
 showcase:
-  subtitle: EXPERIENCE SPEAKS
-  title: Don't Take Our Word For It
-  description: Pellen tesque in ipsum id orci porta dapibus. titor nibh. Vivamus accumsan tincidunt.
+  subtitle: DOCUMENTS
+  title: Publications
+  description: Consultés nos dernières publications.
   list:
     - title: Features You will Need
       description: Proin eget tortor risus. Donec sollicitudin molestie imperdiet et, porttitor at sem.

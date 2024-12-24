@@ -1,0 +1,83 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntry } from "astro:content";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { FaArrowRight, FaArchive, FaBook } from "react-icons/fa";
+import { slugify } from "@/lib/utils/textConverter";
+
+type Position = {
+  title: string;
+  description: string;
+  location: string;
+  type: string;
+};
+
+const { puplications } = Astro.props;
+---
+<section class="section-md relative z-30 overflow-hidden pt-0">
+  <div class="container relative">
+    <div class="row gy-4 relative justify-center">
+      {puplications.map((puplication) => (
+          <div data-aos="fade-up-sm" class="md:col-8 lg:col-6 xl:col-5">
+            <div class="shadow-default relative h-full rounded-2xl bg-white p-8 transition-all duration-300 hover:-translate-y-1 sm:p-12">
+              <h3 class="mb-6 text-xl font-semibold text-dark sm:text-2xl">
+                {puplication.title}
+              </h3>
+              <p class="text-zinc-500 text-opacity-70">
+                <p set:html={puplication.excerpt} />
+              </p>
+              <div class="mt-6 flex flex-wrap items-end justify-between gap-y-4">
+                <ul class="mr-4 inline-flex flex-wrap gap-x-4 gap-y-2 font-medium text-dark">
+                  <li>
+                    <FaArchive className="inline-block mr-2" />
+                    <span>{puplication.terms?.nodes.map(term => term.name).join(', ')}</span>
+                  </li>
+                  <li>
+                    <FaBook className="inline-block mr-2" />
+                    <span>{puplication.documents.map(document => document.type).join(', ')}</span>
+                  </li>
+                </ul>
+                <a
+                  href={`/publications/${puplication.commune.nom[0]}/${puplication.slug}`}
+                  class="group text-lg font-semibold text-red-400 after:absolute after:inset-0"
+                >
+                  Consulter <FaArrowRight className="inline-block" />
+                  <span class="sr-only">details</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      )}
+    </div>
+    <div
+      data-aos="fade-left-sm"
+      class="pointer-events-none absolute bottom-[-70px] right-6 -z-10 hidden select-none lg:block"
+    >
+      <img
+        class="inject-svg text-secondary"
+        src="/images/shapes/about-s-4.svg"
+        alt="shape"
+      />
+    </div>
+  </div>
+
+  <div
+    data-aos="fade-left-sm"
+    class="pointer-events-none absolute left-[-7%] top-[30%] -z-10 hidden select-none lg:block"
+  >
+    <img
+      class="inject-svg text-tertiary"
+      src="/images/shapes/about-s-1.svg"
+      alt="shape"
+    />
+  </div>
+  <div class="col-auto text-center pt-10" data-aos="fade-right-sm" data-aos-delay="150">
+    <a
+      href="/publications"
+      class="btn btn-outline-primary btn-sm"
+    >
+      Plus de plublications
+    </a>
+  </div>
+</section>
