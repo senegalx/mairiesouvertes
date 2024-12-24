@@ -4,7 +4,7 @@ banner:
   title: "Gouvernance Transparente et Participative"
   content: "Découvrez comment MairiesOuvertes transforme la gouvernance locale en Guinée. Grâce aux technologies numériques, nous rendons les politiques publiques plus accessibles et encourageons la participation citoyenne. Participez à notre initiative pour une Guinée plus transparente et responsable."
   image: "/images/banner.png"
-  newsletter: true
+  newsletter: false
   supported:
     title: Supported
     list:
