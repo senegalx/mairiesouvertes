@@ -171,11 +171,4 @@ const { bgColor = "bg-quaternary/20" }: { bgColor?: string } = Astro.props;
   window.addEventListener("scroll", () => {
     stickyHeader();
   });
-
-  const navbarToggler = document.querySelector(".navbar-toggler");
-  const navbarMenu = document.querySelector(".navbar-wrapper");
-  navbarToggler?.addEventListener("click", () => {
-    navbarToggler.classList.toggle("active");
-    navbarMenu?.classList.toggle("active");
-  });
 </script>
