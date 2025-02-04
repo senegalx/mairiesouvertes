@@ -72,15 +72,15 @@ showcase:
         porttitor at sem.
       image: /images/tab-contents/feature-tab-content-3.jpg
 funfacts:
-  subtitle: Chiffres Clés du Projet
-  title: Ensemble, pour une Gouvernance Éclairée
+  subtitle: Chiffres clés du projet
+  title: Ensemble, pour une gouvernance eclairée
   description: Découvrez l'impact de MairiesOuvertes à travers des chiffres clés
     qui illustrent notre engagement pour une gouvernance transparente,
     participative et responsable en Guinée. Nos efforts conjoints avec les
     citoyens et les autorités locales montrent des progrès tangibles vers un
     avenir meilleur.
   list:
-    - count: "15"
+    - count: "5"
       text: Communes participantes
     - count: "100"
       text: Documents accessibles
