@@ -1,7 +1,7 @@
 ---
 title: Mairies Ouvertes
 meta_title: À-propos
-description: MairiesOuvertes est une plateforme d'information et de suivi
+description: MairiesOuvertes est une plateforme d-information et de suivi
   citoyen des politiques publiques locales en Guinée. Elle promeut, par le biais
   du numérique, la participation citoyenne, le renforcement de la transparence
   et la reddition des comptes.
