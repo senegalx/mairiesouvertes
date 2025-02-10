@@ -5,7 +5,7 @@ description: MairiesOuvertes est une plateforme d-information et de suivi
   citoyen des politiques publiques locales en Guinée. Elle promeut, par le biais
   du numérique, la participation citoyenne, le renforcement de la transparence
   et la reddition des comptes.
-image: /images/uploads/c0014t01.jpg
+image: https://drive.google.com/drive/folders/1q861AVwQFEVF9aVVFHIvswr2B7RQ7Og6
 draft: false
 funfacts:
   subtitle: ACHIEVING EXCELLENCE
