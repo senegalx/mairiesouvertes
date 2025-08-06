@@ -38,57 +38,6 @@
     {
       "name": "Actualités",
       "url": "/actualites"
-    },
-    {
-      "name": "Pages",
-      "url": "",
-      "hasChildren": true,
-      "children": [
-        {
-          "name": "Elements",
-          "url": "/elements"
-        },
-        {
-          "name": "Integration",
-          "url": "/integrations"
-        },
-        {
-          "name": "Integration Single",
-          "url": "/integrations/figma"
-        },
-        {
-          "name": "Career",
-          "url": "/career"
-        },
-        {
-          "name": "Career Single",
-          "url": "/career/position-1"
-        },
-        {
-          "name": "Pricing",
-          "url": "/pricing"
-        },
-        {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Author Single",
-          "url": "/authors/benjamin"
-        },
-        {
-          "name": "Blog",
-          "url": "/posts"
-        },
-        {
-          "name": "Blog Single",
-          "url": "/posts/post-1"
-        },
-        {
-          "name": "Contact",
-          "url": "/contact"
-        }
-      ]
     }
   ],
   "footer": [
