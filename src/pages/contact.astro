@@ -26,26 +26,26 @@ const { title, description, meta_title, image, supports } = entry.data;
             data-aos="fade-up-sm"
             class="shadow-default rounded-2xl bg-white px-8 py-10 sm:px-16 sm:py-14"
           >
-            <form method="post" class="row gy-4 text-dark">
+            <form method="POST" action="/" data-netlify-recaptcha="true" data-netlify="true" name="contact" class="row gy-4 text-dark">
               <div class="sm:col-6">
-                <label for="fname" class="form-label">Prénom</label>
+                <label for="prenom" class="form-label">Prénom</label>
                 <input
                   type="text"
                   class="form-input"
                   placeholder="Votre prénom"
-                  id="fname"
-                  name="fname"
+                  id="prenom"
+                  name="prenom"
                   required
                 />
               </div>
               <div class="sm:col-6">
-                <label for="lname" class="form-label">Nom</label>
+                <label for="nom" class="form-label">Nom</label>
                 <input
                   type="text"
                   class="form-input"
                   placeholder="Votre nom"
-                  id="lname"
-                  name="lname"
+                  id="nom"
+                  name="nom"
                   required
                 />
               </div>
@@ -61,16 +61,17 @@ const { title, description, meta_title, image, supports } = entry.data;
                 />
               </div>
               <div class="col-12">
-                <label for="purpose" class="form-label">Raison/But</label>
+                <label for="raison" class="form-label">Raison/But</label>
                 <select
-                  id="purpose"
+                  id="raison"
                   required
+                  name="raison"
                   class="w-full rounded-lg border-border px-5 py-4 text-sm"
                 >
-                  <option value="0">Poser une question</option>
-                  <option value="1">Suggérer une amélioration</option>
-                  <option value="2">Devenir volontaire</option>
-                  <option value="3">Devenir partenaire</option>
+                  <option value="Poser une question">Poser une question</option>
+                  <option value="Suggérer une amélioration">Suggérer une amélioration</option>
+                  <option value="Devenir volontaire">Devenir volontaire</option>
+                  <option value="Devenir partenaire">Devenir partenaire</option>
                 </select>
               </div>
               <div class="col-12">
@@ -147,4 +148,26 @@ const { title, description, meta_title, image, supports } = entry.data;
       </div>
     </div>
   </section>
+  <script>
+    const form = document.querySelector('form[name="contact"]');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      formData.append('form-name', 'contact');
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString(),
+        });
+        if (response.ok) {
+          form.innerHTML = '<p>Merci pour votre message. Nous vous contacterons bientôt.</p>';
+        } else {
+          alert('Une erreur s\'est produite. Veuillez réessayer.');
+        }
+      } catch (error) {
+        alert('Une erreur s\'est produite. Veuillez réessayer.');
+      }
+    });
+  </script>
 </Base>
