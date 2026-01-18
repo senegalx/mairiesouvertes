@@ -22,7 +22,10 @@ export const humanize = (content: string): string => {
 };
 
 // plainify
-export const plainify = (content: string): string => {
+export const plainify = (content: string | null | undefined): string => {
+  if (content == null) {
+    return "";
+  }
   const filterBrackets = content.replace(/<\/?[^>]+(>|$)/gm, "");
   const filterSpaces = filterBrackets.replace(/[\r\n]\s*[\r\n]/gm, "");
   const stripHTML = htmlEntityDecoder(filterSpaces);
