@@ -22,7 +22,7 @@ export const humanize = (content: string): string => {
 };
 
 // plainify
-export const plainify = (content: string | undefined | null): string => {
+export const plainify = (content: string | null | undefined): string => {
   if (content == null) {
     return "";
   }
