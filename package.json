@@ -4,6 +4,9 @@
   "description": "Spydea astro template",
   "author": "themefisher",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "prestart": "npm run generate",
